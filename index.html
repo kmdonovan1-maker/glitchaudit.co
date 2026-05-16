@@ -870,36 +870,34 @@
 </div>
     </div>
     <div>
-      <form name="contact" method="POST" data-netlify="true" netlify-honeypot="bot-field">
-        <input type="hidden" name="form-name" value="contact">
-        <input type="hidden" name="bot-field" style="display:none;">
-        <div class="form-group">
-          <label for="name">Name</label>
-          <input type="text" id="name" name="name" required placeholder="Your name">
-        </div>
-        <div class="form-group">
-          <label for="email">Email</label>
-          <input type="email" id="email" name="email" required placeholder="your@agency.com">
-        </div>
-        <div class="form-group">
-          <label for="interest">I'm interested in</label>
-          <select id="interest" name="interest">
-            <option value="">Select one</option>
-            <option value="audit">Campaign Diagnostic ($950)</option>
-            <option value="team-review">Creative Team Review ($2,500–$3,500)</option>
-            <option value="consulting">On-Site Consulting</option>
-            <option value="speaking">Speaking / Keynote</option>
-            <option value="podcast">Podcast Guest</option>
-            <option value="book">The Book</option>
-            <option value="other">Other</option>
-          </select>
-        </div>
-        <div class="form-group">
-          <label for="message">Message <span class="form-note">(optional)</span></label>
-          <textarea id="message" name="message" placeholder="Tell me about your campaign or project..."></textarea>
-        </div>
-        <button type="submit" class="btn-primary" style="cursor:pointer; border:none; width:100%; text-align:center; padding:1rem;">Send It</button>
-      </form>
+     <form action="https://formspree.io/f/xnjraanl" method="POST">
+  <div class="form-group">
+    <label for="name">Name</label>
+    <input type="text" id="name" name="name" required placeholder="Your name">
+  </div>
+  <div class="form-group">
+    <label for="email">Email</label>
+    <input type="email" id="email" name="email" required placeholder="your@agency.com">
+  </div>
+  <div class="form-group">
+    <label for="interest">I'm interested in</label>
+    <select id="interest" name="interest">
+      <option value="">Select one</option>
+      <option value="audit">Campaign Diagnostic ($950)</option>
+      <option value="team-review">Creative Team Review ($2,500–$3,500)</option>
+      <option value="consulting">On-Site Consulting</option>
+      <option value="speaking">Speaking / Keynote</option>
+      <option value="podcast">Podcast Guest</option>
+      <option value="book">The Book</option>
+      <option value="other">Other</option>
+    </select>
+  </div>
+  <div class="form-group">
+    <label for="message">Message <span class="form-note">(optional)</span></label>
+    <textarea id="message" name="message" placeholder="Tell me about your campaign or project..."></textarea>
+  </div>
+  <button type="submit" class="btn-primary" style="cursor:pointer; border:none; width:100%; text-align:center; padding:1rem;">Send It</button>
+</form>
     </div>
   </div>
 </section>
