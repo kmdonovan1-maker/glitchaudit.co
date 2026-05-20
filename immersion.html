@@ -1,0 +1,878 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Immersion | Kevin Donovan | Glitch Audit</title>
+<meta name="description" content="Four premium engagements. One framework. Zero theory. The Mechanical Mind Immersion — for business owners, ad agencies, over thinkers and students ready to see what's actually been running.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@300;400;500;600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --black: #080c10;
+    --dark: #0d1117;
+    --card: #111820;
+    --teal: #00d4c8;
+    --teal-dim: #00a89e;
+    --purple: #7b5ea7;
+    --purple-light: #9b7ec8;
+    --white: #f0f4f8;
+    --gray: #8899aa;
+    --border: rgba(0, 212, 200, 0.15);
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--black);
+    color: var(--white);
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 300;
+    line-height: 1.7;
+    overflow-x: hidden;
+  }
+
+  /* ── NAV ── */
+  nav {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 100;
+    padding: 1.2rem 4rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: rgba(8, 12, 16, 0.92);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border);
+  }
+
+  .nav-logo {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.4rem;
+    letter-spacing: 0.15em;
+    color: var(--teal);
+    text-decoration: none;
+  }
+
+  .nav-logo span { color: var(--white); }
+
+  .nav-links {
+    display: flex;
+    gap: 2.5rem;
+    list-style: none;
+  }
+
+  .nav-links a {
+    color: var(--gray);
+    text-decoration: none;
+    font-size: 0.85rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    transition: color 0.2s;
+  }
+
+  .nav-links a:hover { color: var(--teal); }
+  .nav-links a.active { color: var(--teal); }
+
+  /* ── BUTTONS ── */
+  .btn-primary {
+    background: var(--teal);
+    color: var(--black);
+    padding: 0.9rem 2rem;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.9rem;
+    font-weight: 600;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    text-decoration: none;
+    display: inline-block;
+    transition: all 0.2s;
+    clip-path: polygon(0 0, calc(100% - 10px) 0, 100% 10px, 100% 100%, 10px 100%, 0 calc(100% - 10px));
+  }
+
+  .btn-primary:hover {
+    background: var(--white);
+    transform: translateY(-2px);
+  }
+
+  .btn-secondary {
+    border: 1px solid var(--border);
+    color: var(--teal);
+    padding: 0.9rem 2rem;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.9rem;
+    font-weight: 500;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    text-decoration: none;
+    display: inline-block;
+    transition: all 0.2s;
+    clip-path: polygon(0 0, calc(100% - 10px) 0, 100% 10px, 100% 100%, 10px 100%, 0 calc(100% - 10px));
+  }
+
+  .btn-secondary:hover {
+    border-color: var(--teal);
+    background: rgba(0, 212, 200, 0.08);
+    transform: translateY(-2px);
+  }
+
+  /* ── SECTION BASICS ── */
+  .section-tag {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.72rem;
+    color: var(--teal);
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    margin-bottom: 1rem;
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+  }
+
+  .section-tag::before {
+    content: '';
+    display: block;
+    width: 24px;
+    height: 1px;
+    background: var(--teal);
+  }
+
+  .section-title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(2.5rem, 5vw, 4rem);
+    line-height: 1;
+    letter-spacing: 0.03em;
+    margin-bottom: 1.5rem;
+  }
+
+  .section-title .accent { color: var(--teal); }
+  .section-title .accent-purple { color: var(--purple-light); }
+
+  .section-body {
+    color: var(--gray);
+    max-width: 640px;
+    font-size: 1.05rem;
+    line-height: 1.85;
+  }
+
+  .section-body strong {
+    color: var(--white);
+    font-weight: 500;
+  }
+
+  /* ── HERO ── */
+  #hero {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    position: relative;
+    overflow: hidden;
+    padding: 8rem 4rem 6rem;
+  }
+
+  .hero-bg {
+    position: absolute;
+    inset: 0;
+    background:
+      radial-gradient(ellipse 60% 50% at 70% 50%, rgba(123, 94, 167, 0.15) 0%, transparent 70%),
+      radial-gradient(ellipse 40% 60% at 30% 30%, rgba(0, 212, 200, 0.06) 0%, transparent 60%);
+  }
+
+  .hero-grid {
+    position: absolute;
+    inset: 0;
+    background-image:
+      linear-gradient(rgba(0, 212, 200, 0.03) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(0, 212, 200, 0.03) 1px, transparent 1px);
+    background-size: 60px 60px;
+  }
+
+  .hero-content {
+    position: relative;
+    max-width: 820px;
+  }
+
+  .hero-tag {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.75rem;
+    color: var(--teal);
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    margin-bottom: 1.5rem;
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+  }
+
+  .hero-tag::before {
+    content: '';
+    display: block;
+    width: 30px;
+    height: 1px;
+    background: var(--teal);
+  }
+
+  .hero-headline {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(3.5rem, 8vw, 7rem);
+    line-height: 0.95;
+    letter-spacing: 0.02em;
+    margin-bottom: 1.5rem;
+  }
+
+  .hero-headline .accent { color: var(--teal); }
+  .hero-headline .accent-purple { color: var(--purple-light); }
+
+  .hero-sub {
+    font-size: 1.2rem;
+    color: var(--gray);
+    max-width: 620px;
+    margin-bottom: 1.5rem;
+    line-height: 1.8;
+  }
+
+  .hero-sub strong {
+    color: var(--white);
+    font-weight: 500;
+  }
+
+  .hero-warning {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.82rem;
+    color: var(--purple-light);
+    letter-spacing: 0.08em;
+    margin-bottom: 2.5rem;
+    padding-left: 1rem;
+    border-left: 2px solid var(--purple);
+    line-height: 1.7;
+  }
+
+  /* ── DIVIDER ── */
+  .divider {
+    height: 1px;
+    background: linear-gradient(90deg, var(--teal), var(--purple), transparent);
+    margin: 0;
+    opacity: 0.3;
+  }
+
+  /* ── PACKAGE SECTIONS ── */
+  .package-section {
+    padding: 7rem 4rem;
+    position: relative;
+  }
+
+  .package-section.dark {
+    background: var(--dark);
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+  }
+
+  .package-inner {
+    max-width: 1100px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 5rem;
+    align-items: start;
+  }
+
+  .package-left {}
+
+  .package-price {
+    font-family: 'DM Mono', monospace;
+    font-size: 2.8rem;
+    color: var(--teal);
+    margin-bottom: 0.5rem;
+    line-height: 1;
+  }
+
+  .package-tagline {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.78rem;
+    color: var(--purple-light);
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    margin-bottom: 2rem;
+  }
+
+  .package-body {
+    color: var(--gray);
+    font-size: 1rem;
+    line-height: 1.85;
+    margin-bottom: 1.5rem;
+  }
+
+  .package-body strong {
+    color: var(--white);
+    font-weight: 500;
+  }
+
+  .package-quote {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 1rem;
+    color: var(--white);
+    font-style: italic;
+    padding: 1.25rem 1.5rem;
+    border-left: 2px solid var(--teal);
+    margin: 2rem 0;
+    line-height: 1.7;
+    background: rgba(0, 212, 200, 0.04);
+  }
+
+  /* ── INCLUDES CARD ── */
+  .includes-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    padding: 2.5rem;
+    position: relative;
+    clip-path: polygon(0 0, calc(100% - 20px) 0, 100% 20px, 100% 100%, 20px 100%, 0 calc(100% - 20px));
+  }
+
+  .includes-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: linear-gradient(90deg, var(--teal), var(--purple));
+  }
+
+  .includes-title {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.72rem;
+    color: var(--teal);
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    margin-bottom: 1.5rem;
+  }
+
+  .includes-list {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 2rem;
+  }
+
+  .includes-list li {
+    color: var(--gray);
+    font-size: 0.95rem;
+    padding: 0.6rem 0;
+    border-bottom: 1px solid rgba(255,255,255,0.04);
+    display: flex;
+    align-items: flex-start;
+    gap: 0.75rem;
+    line-height: 1.6;
+  }
+
+  .includes-list li::before {
+    content: '→';
+    color: var(--teal);
+    flex-shrink: 0;
+    margin-top: 0.1rem;
+  }
+
+  .includes-list li:last-child {
+    border-bottom: none;
+  }
+
+  .includes-outcome {
+    background: rgba(123, 94, 167, 0.08);
+    border: 1px solid rgba(123, 94, 167, 0.2);
+    padding: 1.25rem;
+    margin-top: 1.5rem;
+  }
+
+  .includes-outcome-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.65rem;
+    color: var(--purple-light);
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    margin-bottom: 0.5rem;
+  }
+
+  .includes-outcome-text {
+    color: var(--gray);
+    font-size: 0.9rem;
+    line-height: 1.7;
+  }
+
+  .includes-outcome-text strong {
+    color: var(--white);
+    font-weight: 500;
+  }
+
+  /* ── NOT FOR EVERYONE ── */
+  #not-everyone {
+    padding: 7rem 4rem;
+    background: var(--dark);
+    border-top: 1px solid var(--border);
+  }
+
+  .not-everyone-inner {
+    max-width: 760px;
+    margin: 0 auto;
+    text-align: center;
+  }
+
+  .not-everyone-headline {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(2.5rem, 5vw, 4.5rem);
+    line-height: 1;
+    letter-spacing: 0.03em;
+    margin-bottom: 2rem;
+  }
+
+  .not-everyone-body {
+    color: var(--gray);
+    font-size: 1.1rem;
+    line-height: 1.9;
+    margin-bottom: 1.5rem;
+  }
+
+  .not-everyone-body strong {
+    color: var(--white);
+    font-weight: 500;
+  }
+
+  .email-cta {
+    margin-top: 3rem;
+    padding: 2.5rem;
+    background: var(--card);
+    border: 1px solid var(--border);
+    clip-path: polygon(0 0, calc(100% - 20px) 0, 100% 20px, 100% 100%, 20px 100%, 0 calc(100% - 20px));
+    position: relative;
+  }
+
+  .email-cta::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 2px;
+    background: linear-gradient(90deg, var(--teal), var(--purple));
+  }
+
+  .email-cta-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.72rem;
+    color: var(--teal);
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    margin-bottom: 1rem;
+  }
+
+  .email-cta-address {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 2rem;
+    letter-spacing: 0.08em;
+    margin-bottom: 0.75rem;
+  }
+
+  .email-cta-address a {
+    color: var(--teal);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+
+  .email-cta-address a:hover {
+    color: var(--white);
+  }
+
+  .email-cta-note {
+    color: var(--gray);
+    font-size: 0.88rem;
+    font-style: italic;
+  }
+
+  .availability-note {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.72rem;
+    color: var(--purple-light);
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    margin-top: 2rem;
+  }
+
+  /* ── FOOTER ── */
+  footer {
+    padding: 2rem 4rem;
+    border-top: 1px solid var(--border);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .footer-logo {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.1rem;
+    letter-spacing: 0.15em;
+    color: var(--teal);
+  }
+
+  .footer-copy {
+    font-size: 0.8rem;
+    color: var(--gray);
+    font-family: 'DM Mono', monospace;
+  }
+
+  /* ── ANIMATIONS ── */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(24px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .hero-content > * {
+    animation: fadeUp 0.7s ease both;
+  }
+
+  .hero-tag { animation-delay: 0.1s; }
+  .hero-headline { animation-delay: 0.2s; }
+  .hero-sub { animation-delay: 0.35s; }
+  .hero-warning { animation-delay: 0.45s; }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 768px) {
+    nav { padding: 1rem 1.5rem; }
+    .nav-links { display: none; }
+    #hero { padding: 7rem 1.5rem 4rem; }
+    .package-section { padding: 4rem 1.5rem; }
+    .package-inner { grid-template-columns: 1fr; gap: 2.5rem; }
+    #not-everyone { padding: 4rem 1.5rem; }
+    footer { flex-direction: column; gap: 1rem; text-align: center; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="index.html" class="nav-logo">GLITCH<span>AUDIT</span></a>
+  <ul class="nav-links">
+    <li><a href="index.html#offer">Services</a></li>
+    <li><a href="index.html#revenue-glitch">Business</a></li>
+    <li><a href="immersion.html" class="active">The Immersion</a></li>
+    <li><a href="index.html#speaking">Speaking</a></li>
+    <li><a href="index.html#book">The Book</a></li>
+    <li><a href="index.html#glossary">Free Download</a></li>
+    <li><a href="index.html#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-grid"></div>
+  <div class="hero-content">
+    <div class="hero-tag">Premium Engagements · Kevin Donovan</div>
+    <h1 class="hero-headline">
+      THIS IS<br>
+      NOT FOR<br>
+      <span class="accent">EVERYONE.</span>
+    </h1>
+    <p class="hero-sub">
+      Most people who land here will read this page and think —
+      <strong>that's exactly what I need</strong> — and then talk themselves
+      out of it before they finish the sentence.
+      <br><br>
+      That's the machine running.
+      <br><br>
+      This page is for the ones who don't.
+    </p>
+    <div class="hero-warning">
+      Four engagements. One framework. Zero theory.<br>
+      $50,000 · Application only · Limited availability.
+    </div>
+    <div style="display:flex; gap:1rem; flex-wrap:wrap;">
+      <a href="#not-everyone" class="btn-primary">Apply for an Immersion</a>
+      <a href="index.html" class="btn-secondary">Back to Glitch Audit</a>
+    </div>
+  </div>
+</section>
+
+<!-- INTRO SECTION -->
+<section style="padding: 6rem 4rem; background: var(--dark); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border);">
+  <div style="max-width: 800px; margin: 0 auto; text-align: center;">
+    <div class="section-tag" style="justify-content: center;">The Framework</div>
+    <h2 class="section-title">FOUR <span class="accent">IMMERSIONS.</span><br>ONE <span class="accent-purple">MACHINE.</span></h2>
+    <p style="color: var(--gray); font-size: 1.1rem; line-height: 1.9; margin-bottom: 1.5rem;">
+      Every engagement at this level starts with the same question — not what's wrong with your
+      business, your campaign, your thinking or your life.
+    </p>
+    <p style="color: var(--white); font-size: 1.2rem; line-height: 1.9; margin-bottom: 1.5rem; font-weight: 500;">
+      What's been running underneath it.
+    </p>
+    <p style="color: var(--gray); font-size: 1.1rem; line-height: 1.9;">
+      The Mechanical Mind doesn't care whether it's running a Fortune 500 boardroom, a creative
+      agency, a small business or a single human being trying to make a decision at 2am. It runs
+      the same prehistoric code at every level. Once you see it — really see it — everything changes.
+      Not because you fixed something. Because you finally know what you're actually dealing with.
+    </p>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- PACKAGE 1 — BUSINESS OWNER -->
+<section class="package-section" id="business-owner">
+  <div class="package-inner">
+    <div class="package-left">
+      <div class="section-tag">Package 01</div>
+      <h2 class="section-title">REVENUE <span class="accent">GLITCH</span><br>IMMERSION™</h2>
+      <div class="package-price">$50,000</div>
+      <div class="package-tagline">For the Independently Owned Business</div>
+      <p class="package-body">
+        For independently owned businesses where something invisible is costing more than anything
+        visible could explain.
+        <br><br>
+        Customer retention bleeding quietly. Good people leaving without explanation. Marketing spend
+        with no measurable return. Revenue that looks adequate on paper but never compounds. A business
+        that works hard and stays flat.
+        <br><br>
+        This isn't a consulting engagement. It's a full structural excavation — every layer of the
+        business examined through the one lens nobody else is using.
+        <br><br>
+        <strong>The Mechanical Mind running your decisions, your culture, your customer relationships
+        and your market position. Named. Mapped. Corrected.</strong>
+      </p>
+      <div class="package-quote">
+        "Most consultants tell you what to fix. This engagement shows you what's been running —
+        and builds something that lasts."
+      </div>
+      <a href="#not-everyone" class="btn-primary">Apply for This Engagement</a>
+    </div>
+    <div>
+      <div class="includes-card">
+        <div class="includes-title">What's Included</div>
+        <ul class="includes-list">
+          <li>Full Revenue Glitch Audit — surface leaks and deep structural patterns identified and named</li>
+          <li>Revenue Architecture Blueprint — complete 90-day structural reset across all five revenue layers</li>
+          <li>Glimpses vs Glitches for the Business Owner — implemented company wide, not just read</li>
+          <li>Authority and transparency positioning — becoming the most trusted voice in your market</li>
+          <li>Flagship brand video — written, directed and produced by Kevin. A professional content asset that keeps working after the engagement ends.</li>
+        </ul>
+        <div class="includes-outcome">
+          <div class="includes-outcome-label">The Outcome</div>
+          <div class="includes-outcome-text">
+            A business that knows exactly what it is, says it clearly, stops leaking revenue quietly
+            and has a production asset built by someone who spent 25 years making national campaigns
+            for <strong>McDonald's, Coca-Cola and Ford.</strong>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- PACKAGE 2 — AD AGENCY -->
+<section class="package-section dark" id="ad-agency">
+  <div class="package-inner">
+    <div class="package-left">
+      <div class="section-tag">Package 02</div>
+      <h2 class="section-title">MECHANICAL <span class="accent-purple">MIND</span><br>CREATIVE IMMERSION™</h2>
+      <div class="package-price">$50,000</div>
+      <div class="package-tagline">For the Mid-Sized Ad Agency</div>
+      <p class="package-body">
+        For mid-sized agencies whose creative is technically competent but not breaking through
+        the way it should.
+        <br><br>
+        Where's the Beef didn't come from a strategy deck. The Most Interesting Man in the World
+        didn't arrive from a positioning framework. What's Up wasn't the result of a focus group.
+        <br><br>
+        Those campaigns landed because someone understood at a biological level exactly which lever
+        to pull — and pulled it at the right moment. That's not luck. That's the Mechanical Mind
+        understood well enough to use deliberately.
+        <br><br>
+        <strong>This engagement puts a veteran producer who spent 25 years pulling those levers inside
+        your creative process — as the biological lens your team has never had in the room before.</strong>
+      </p>
+      <div class="package-quote">
+        "I wasn't just watching the machine. I was helping to run it. Now I show your team which
+        levers your creative is accidentally hitting — and how to hit the right ones on purpose."
+      </div>
+      <a href="#not-everyone" class="btn-primary">Apply for This Engagement</a>
+    </div>
+    <div>
+      <div class="includes-card">
+        <div class="includes-title">What's Included</div>
+        <ul class="includes-list">
+          <li>Full Mechanical Mind Audit of current and recent campaigns — exactly which biological levers are being hit and which are being missed</li>
+          <li>Mechanical Mind Creative Workshop — the biology of engagement taught through real campaign examples your team will recognize</li>
+          <li>The Glitch Filter — installed as a creative diagnostic tool on every concept before it goes to the client</li>
+          <li>Campaign development session — Kevin in the room on your next major pitch</li>
+          <li>Flagship agency positioning video — a content asset that separates you from every competitor pitching on price alone</li>
+        </ul>
+        <div class="includes-outcome">
+          <div class="includes-outcome-label">The Outcome</div>
+          <div class="includes-outcome-text">
+            A creative team that understands why great campaigns work at the biological level — and
+            <strong>a veteran producer's perspective on the work that matters most.</strong>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- PACKAGE 3 — OVER THINKER -->
+<section class="package-section" id="over-thinker">
+  <div class="package-inner">
+    <div class="package-left">
+      <div class="section-tag">Package 03</div>
+      <h2 class="section-title">PERSONAL <span class="accent">IMMERSION™</span><br><span style="font-size: 0.65em; color: var(--purple-light);">FOR THE OVER THINKER</span></h2>
+      <div class="package-price">$50,000</div>
+      <div class="package-tagline">VIP Personal Coaching · 3 Months</div>
+      <p class="package-body">
+        For high functioning individuals whose thinking is costing more than it's producing.
+        <br><br>
+        You're smart enough to know the loop is running. You're capable enough to have built
+        something real despite it. And you're tired enough to finally want to know what's actually
+        underneath it — not another technique, not another framework, not another seminar that
+        promises transformation and delivers a temporary state.
+        <br><br>
+        The 2am verification loop. The phantom screenplay running before a single fact is established.
+        The decision that should take ten minutes consuming three weeks. The relationship conversation
+        that happened perfectly in your head and catastrophically in real life.
+        <br><br>
+        <strong>That's not a character flaw. That's prehistoric hardware running without a manual.
+        This is the manual — with someone in the room to help you read it.</strong>
+      </p>
+      <div class="package-quote">
+        "The seminar world has been selling you back what you already own.
+        This engagement just shows you where it actually lives."
+      </div>
+      <a href="#not-everyone" class="btn-primary">Apply for This Engagement</a>
+    </div>
+    <div>
+      <div class="includes-card">
+        <div class="includes-title">What's Included</div>
+        <ul class="includes-list">
+          <li>Personal Glitch Audit — your specific programs mapped, named and recognized</li>
+          <li>Glimpses vs Glitches for the Awareness Seeker — implemented personally, not just read</li>
+          <li>The Who Where Inquiry — installed as a daily practice with direct coaching on application</li>
+          <li>Weekly 1:1 Zoom sessions for three months — real conversation, specific techniques, live calibration</li>
+          <li>The Workbook completed as a guided experience rather than a solo one</li>
+          <li>Your personal glitch map — a document that travels with you after the engagement ends</li>
+        </ul>
+        <div class="includes-outcome">
+          <div class="includes-outcome-label">The Outcome</div>
+          <div class="includes-outcome-text">
+            Not a permanent elevated state — the machine doesn't work that way and this engagement
+            is honest about that. <strong>A fundamentally different relationship with the thinking —
+            and the metabolic dividend that comes when the false alarms stop burning through your energy.</strong>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- PACKAGE 4 — STUDENT -->
+<section class="package-section dark" id="student">
+  <div class="package-inner">
+    <div class="package-left">
+      <div class="section-tag">Package 04</div>
+      <h2 class="section-title">PERSONAL <span class="accent-purple">IMMERSION™</span><br><span style="font-size: 0.65em; color: var(--teal);">FOR THE STUDENT</span></h2>
+      <div class="package-price">$50,000</div>
+      <div class="package-tagline">VIP Personal Coaching · 3 Months</div>
+      <p class="package-body">
+        For parents who recognize their child is genuinely capable — and watching them disappear
+        into the most glitch-dense period of human life without a single tool that actually works on it.
+        <br><br>
+        Fitting in consuming more energy than living. Self worth tied entirely to what other people
+        think. Career decisions made from fear rather than clarity. The tribal hierarchy of school
+        running at full volume 24 hours a day.
+        <br><br>
+        A young person who is smart, capable and completely inside the machine with no way to
+        see it from the outside.
+        <br><br>
+        <strong>Nobody handed them a manual for the hardware running their social anxiety, their
+        self doubt, their approval loops and their 2am spirals. This engagement names what's
+        generating them.</strong>
+      </p>
+      <div class="package-quote">
+        "Nobody handed them a manual for the hardware running their life.
+        This is that manual — with someone in the room to help them read it."
+      </div>
+      <a href="#not-everyone" class="btn-primary">Apply for This Engagement</a>
+    </div>
+    <div>
+      <div class="includes-card">
+        <div class="includes-title">What's Included</div>
+        <ul class="includes-list">
+          <li>Personal Glitch Audit — age appropriate, specific to their actual programs not generic frameworks</li>
+          <li>Glimpses vs Glitches for the Student — the framework implemented personally in language that actually lands</li>
+          <li>The Who Where Inquiry — installed in a way that works for a young person's real life</li>
+          <li>Weekly 1:1 Zoom sessions for three months — real conversation, no therapy jargon, no generic teenage frameworks</li>
+          <li>Personal glitch map — their specific patterns named and owned</li>
+          <li>Parent session — one dedicated session so the home environment supports rather than contradicts the work</li>
+        </ul>
+        <div class="includes-outcome">
+          <div class="includes-outcome-label">The Outcome</div>
+          <div class="includes-outcome-text">
+            A young person who can see the machine running their anxiety, their approval loops
+            and their self doubt — and has <strong>a question that actually works on it in real time.</strong>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- NOT FOR EVERYONE / CTA -->
+<section id="not-everyone">
+  <div class="not-everyone-inner">
+    <div class="section-tag" style="justify-content: center;">How This Works</div>
+    <h2 class="not-everyone-headline">NO FORM.<br>NO <span style="color: var(--teal);">DROPDOWN.</span><br>NO SEQUENCE.</h2>
+    <p class="not-everyone-body">
+      These engagements are not for everyone and they are not designed to be.
+      <br><br>
+      If you're reading this and something landed — not the price, not the deliverables,
+      but the actual description of what's been running — <strong>that's the signal worth following.</strong>
+      <br><br>
+      There is no automated sequence waiting on the other side. No sales funnel.
+      No discovery call with a junior team member.
+      <br><br>
+      Just an honest conversation about whether this is the right fit —
+      for you, and for the engagement.
+      <br><br>
+      <strong>Send a single email to Kevin. Tell him what's running. He'll take it from there.</strong>
+    </p>
+
+    <div class="email-cta">
+      <div class="email-cta-label">Apply for an Immersion</div>
+      <div class="email-cta-address">
+        <a href="mailto:kevin@glitchaudit.co?subject=Immersion%20Inquiry">kevin@glitchaudit.co</a>
+      </div>
+      <p class="email-cta-note">
+        Tell Kevin what's running. One email. No form required.
+      </p>
+    </div>
+
+    <p class="availability-note">
+      These engagements are accepted by application only · Current availability: limited
+    </p>
+
+    <div style="margin-top: 3rem;">
+      <a href="index.html" class="btn-secondary">← Back to Glitch Audit</a>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-logo">GLITCH AUDIT</div>
+  <div class="footer-copy">© 2026 Kevin Donovan · glitchaudit.co</div>
+</footer>
+
+</body>
+</html>
