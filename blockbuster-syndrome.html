@@ -1,0 +1,723 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Blockbuster Syndrome | Glitch Glossary | Glitch Audit</title>
+<meta name="description" content="The Blockbuster Syndrome is the deep conviction that what worked before will keep working — not because the evidence supports it but because change feels like an admission of failure. Learn to identify this business glitch before it costs you everything.">
+<meta name="keywords" content="blockbuster syndrome, business glitch, why business is stuck, fear of change in business, mechanical mind, business patterns, glitch audit, kevin donovan">
+<link rel="canonical" href="https://glitchaudit.co/blockbuster-syndrome">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@300;400;500;600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --black: #080c10;
+    --dark: #0d1117;
+    --card: #111820;
+    --teal: #00d4c8;
+    --teal-dim: #00a89e;
+    --purple: #7b5ea7;
+    --purple-light: #9b7ec8;
+    --white: #f0f4f8;
+    --gray: #8899aa;
+    --border: rgba(0, 212, 200, 0.15);
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--black);
+    color: var(--white);
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 300;
+    line-height: 1.7;
+    overflow-x: hidden;
+  }
+
+  /* ── NAV ── */
+  nav {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 100;
+    padding: 1.2rem 4rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: rgba(8, 12, 16, 0.92);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border);
+  }
+
+  .nav-logo {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.4rem;
+    letter-spacing: 0.15em;
+    color: var(--teal);
+    text-decoration: none;
+  }
+
+  .nav-logo span { color: var(--white); }
+
+  .nav-links {
+    display: flex;
+    gap: 2.5rem;
+    list-style: none;
+  }
+
+  .nav-links a {
+    color: var(--gray);
+    text-decoration: none;
+    font-size: 0.85rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    transition: color 0.2s;
+  }
+
+  .nav-links a:hover { color: var(--teal); }
+
+  /* ── HERO ── */
+  #hero {
+    min-height: 60vh;
+    display: flex;
+    align-items: center;
+    position: relative;
+    overflow: hidden;
+    padding: 10rem 4rem 5rem;
+  }
+
+  .hero-bg {
+    position: absolute;
+    inset: 0;
+    background:
+      radial-gradient(ellipse 50% 60% at 80% 40%, rgba(123, 94, 167, 0.12) 0%, transparent 70%),
+      radial-gradient(ellipse 30% 40% at 20% 60%, rgba(0, 212, 200, 0.05) 0%, transparent 60%);
+  }
+
+  .hero-grid {
+    position: absolute;
+    inset: 0;
+    background-image:
+      linear-gradient(rgba(0, 212, 200, 0.03) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(0, 212, 200, 0.03) 1px, transparent 1px);
+    background-size: 60px 60px;
+  }
+
+  .hero-content {
+    position: relative;
+    max-width: 900px;
+  }
+
+  .breadcrumb {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.72rem;
+    color: var(--gray);
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    margin-bottom: 1.5rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  .breadcrumb a {
+    color: var(--teal);
+    text-decoration: none;
+  }
+
+  .breadcrumb span { color: var(--gray); }
+
+  .entry-set-tag {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.72rem;
+    color: var(--teal);
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    margin-bottom: 1rem;
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+  }
+
+  .entry-set-tag::before {
+    content: '';
+    display: block;
+    width: 24px;
+    height: 1px;
+    background: var(--teal);
+  }
+
+  .hero-headline {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(3rem, 8vw, 6.5rem);
+    line-height: 0.95;
+    letter-spacing: 0.02em;
+    margin-bottom: 1.5rem;
+  }
+
+  .hero-headline .accent { color: var(--teal); }
+  .hero-headline .accent-purple { color: var(--purple-light); }
+
+  .hero-sub {
+    font-size: 1.15rem;
+    color: var(--gray);
+    max-width: 680px;
+    line-height: 1.85;
+    font-style: italic;
+    padding-left: 1.25rem;
+    border-left: 2px solid var(--teal);
+  }
+
+  /* ── DIVIDER ── */
+  .divider {
+    height: 1px;
+    background: linear-gradient(90deg, var(--teal), var(--purple), transparent);
+    opacity: 0.3;
+  }
+
+  /* ── MAIN CONTENT ── */
+  .content-section {
+    padding: 5rem 4rem;
+    max-width: 860px;
+    margin: 0 auto;
+  }
+
+  .section-tag {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.72rem;
+    color: var(--teal);
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    margin-bottom: 1.25rem;
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+  }
+
+  .section-tag::before {
+    content: '';
+    display: block;
+    width: 24px;
+    height: 1px;
+    background: var(--teal);
+  }
+
+  .content-body {
+    color: var(--gray);
+    font-size: 1.05rem;
+    line-height: 1.95;
+  }
+
+  .content-body p {
+    margin-bottom: 1.5rem;
+  }
+
+  .content-body strong {
+    color: var(--white);
+    font-weight: 500;
+  }
+
+  .content-body em {
+    color: var(--purple-light);
+    font-style: italic;
+  }
+
+  /* ── PULL QUOTE ── */
+  .pull-quote {
+    margin: 3rem 0;
+    padding: 2rem 2.5rem;
+    border-left: 3px solid var(--teal);
+    background: rgba(0, 212, 200, 0.04);
+    font-size: 1.2rem;
+    color: var(--white);
+    line-height: 1.7;
+    font-weight: 300;
+  }
+
+  .pull-quote em {
+    color: var(--teal);
+    font-style: normal;
+  }
+
+  /* ── RECOGNIZED BY ── */
+  .recognized-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    padding: 2.5rem;
+    margin: 2.5rem 0;
+    position: relative;
+    clip-path: polygon(0 0, calc(100% - 16px) 0, 100% 16px, 100% 100%, 16px 100%, 0 calc(100% - 16px));
+  }
+
+  .recognized-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 2px;
+    background: linear-gradient(90deg, var(--purple), var(--teal));
+  }
+
+  .recognized-title {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.72rem;
+    color: var(--purple-light);
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    margin-bottom: 1.25rem;
+  }
+
+  .recognized-list {
+    list-style: none;
+    padding: 0;
+  }
+
+  .recognized-list li {
+    color: var(--gray);
+    font-size: 0.95rem;
+    padding: 0.6rem 0;
+    border-bottom: 1px solid rgba(255,255,255,0.04);
+    display: flex;
+    align-items: flex-start;
+    gap: 0.75rem;
+    line-height: 1.6;
+  }
+
+  .recognized-list li::before {
+    content: '→';
+    color: var(--purple-light);
+    flex-shrink: 0;
+    margin-top: 0.1rem;
+  }
+
+  .recognized-list li:last-child { border-bottom: none; }
+
+  /* ── INQUIRY ── */
+  .inquiry-section {
+    background: var(--dark);
+    border: 1px solid var(--border);
+    border-top: 2px solid var(--teal);
+    padding: 3rem;
+    margin: 3rem 0;
+    text-align: center;
+  }
+
+  .inquiry-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.72rem;
+    color: var(--teal);
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    margin-bottom: 1.25rem;
+  }
+
+  .inquiry-question {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(1.4rem, 3vw, 2rem);
+    letter-spacing: 0.05em;
+    color: var(--white);
+    line-height: 1.3;
+    margin-bottom: 0.75rem;
+  }
+
+  .inquiry-question-2 {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(1.2rem, 2.5vw, 1.6rem);
+    letter-spacing: 0.05em;
+    color: var(--purple-light);
+    line-height: 1.3;
+  }
+
+  /* ── RELATED GLITCHES ── */
+  .related-section {
+    padding: 4rem;
+    background: var(--dark);
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+  }
+
+  .related-inner {
+    max-width: 860px;
+    margin: 0 auto;
+  }
+
+  .related-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+    margin-top: 2rem;
+  }
+
+  .related-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    padding: 1.75rem;
+    text-decoration: none;
+    transition: all 0.2s;
+    clip-path: polygon(0 0, calc(100% - 12px) 0, 100% 12px, 100% 100%, 12px 100%, 0 calc(100% - 12px));
+    position: relative;
+  }
+
+  .related-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 1px;
+    background: var(--teal);
+    opacity: 0;
+    transition: opacity 0.2s;
+  }
+
+  .related-card:hover {
+    border-color: rgba(0, 212, 200, 0.4);
+    transform: translateY(-2px);
+  }
+
+  .related-card:hover::before { opacity: 1; }
+
+  .related-card-tag {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.65rem;
+    color: var(--teal);
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    margin-bottom: 0.5rem;
+  }
+
+  .related-card-title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.1rem;
+    letter-spacing: 0.05em;
+    color: var(--white);
+    margin-bottom: 0.5rem;
+  }
+
+  .related-card-desc {
+    font-size: 0.85rem;
+    color: var(--gray);
+    line-height: 1.6;
+  }
+
+  /* ── CTA SECTION ── */
+  #cta {
+    padding: 6rem 4rem;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .cta-bg {
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse 60% 80% at 50% 50%, rgba(0, 212, 200, 0.05) 0%, transparent 70%);
+  }
+
+  .cta-inner {
+    position: relative;
+    max-width: 680px;
+    margin: 0 auto;
+  }
+
+  .cta-title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(2rem, 5vw, 3.5rem);
+    letter-spacing: 0.03em;
+    line-height: 1;
+    margin-bottom: 1.5rem;
+  }
+
+  .cta-title .accent { color: var(--teal); }
+
+  .cta-body {
+    color: var(--gray);
+    font-size: 1.05rem;
+    line-height: 1.85;
+    margin-bottom: 2.5rem;
+  }
+
+  .cta-body strong { color: var(--white); font-weight: 500; }
+
+  .btn-primary {
+    background: var(--teal);
+    color: var(--black);
+    padding: 1rem 2.5rem;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.9rem;
+    font-weight: 600;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    text-decoration: none;
+    display: inline-block;
+    transition: all 0.2s;
+    clip-path: polygon(0 0, calc(100% - 10px) 0, 100% 10px, 100% 100%, 10px 100%, 0 calc(100% - 10px));
+    margin-right: 1rem;
+    margin-bottom: 1rem;
+  }
+
+  .btn-primary:hover {
+    background: var(--white);
+    transform: translateY(-2px);
+  }
+
+  .btn-secondary {
+    border: 1px solid var(--border);
+    color: var(--teal);
+    padding: 1rem 2.5rem;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.9rem;
+    font-weight: 500;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    text-decoration: none;
+    display: inline-block;
+    transition: all 0.2s;
+    clip-path: polygon(0 0, calc(100% - 10px) 0, 100% 10px, 100% 100%, 10px 100%, 0 calc(100% - 10px));
+    margin-bottom: 1rem;
+  }
+
+  .btn-secondary:hover {
+    border-color: var(--teal);
+    background: rgba(0, 212, 200, 0.08);
+    transform: translateY(-2px);
+  }
+
+  .cta-note {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.72rem;
+    color: var(--gray);
+    letter-spacing: 0.1em;
+    margin-top: 1.5rem;
+  }
+
+  /* ── FOOTER ── */
+  footer {
+    padding: 2rem 4rem;
+    border-top: 1px solid var(--border);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .footer-logo {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.1rem;
+    letter-spacing: 0.15em;
+    color: var(--teal);
+  }
+
+  .footer-copy {
+    font-size: 0.8rem;
+    color: var(--gray);
+    font-family: 'DM Mono', monospace;
+  }
+
+  /* ── ANIMATIONS ── */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .hero-content > * {
+    animation: fadeUp 0.6s ease both;
+  }
+
+  .breadcrumb { animation-delay: 0.1s; }
+  .entry-set-tag { animation-delay: 0.2s; }
+  .hero-headline { animation-delay: 0.3s; }
+  .hero-sub { animation-delay: 0.45s; }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 768px) {
+    nav { padding: 1rem 1.5rem; }
+    .nav-links { display: none; }
+    #hero { padding: 7rem 1.5rem 3rem; }
+    .content-section { padding: 3rem 1.5rem; }
+    .related-section { padding: 3rem 1.5rem; }
+    .related-grid { grid-template-columns: 1fr; }
+    #cta { padding: 4rem 1.5rem; }
+    footer { flex-direction: column; gap: 1rem; text-align: center; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="index.html" class="nav-logo">GLITCH<span>AUDIT</span></a>
+  <ul class="nav-links">
+    <li><a href="index.html#offer">Services</a></li>
+    <li><a href="index.html#revenue-glitch">Business</a></li>
+    <li><a href="immersion.html">The Immersion</a></li>
+    <li><a href="index.html#speaking">Speaking</a></li>
+    <li><a href="index.html#book">The Book</a></li>
+    <li><a href="index.html#glossary">Free Download</a></li>
+    <li><a href="index.html#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-grid"></div>
+  <div class="hero-content">
+    <div class="breadcrumb">
+      <a href="index.html">Home</a>
+      <span>/</span>
+      <a href="index.html#glossary">Glitch Glossary</a>
+      <span>/</span>
+      <span>The Blockbuster Syndrome</span>
+    </div>
+    <div class="entry-set-tag">Entry Set 01 · Foundation Glitches</div>
+    <h1 class="hero-headline">
+      THE<br>
+      <span class="accent">BLOCKBUSTER</span><br>
+      <span class="accent-purple">SYNDROME</span>
+    </h1>
+    <p class="hero-sub">
+      The deep conviction that what worked before will keep working — not because the evidence supports it but because change feels like an admission of failure.
+    </p>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- MAIN CONTENT -->
+<article class="content-section">
+
+  <div class="section-tag">The Glitch</div>
+
+  <div class="content-body">
+
+    <p>There is a moment every business owner has experienced but almost nobody talks about honestly.</p>
+
+    <p>The moment when the market sends a signal — clearly, repeatedly, sometimes loudly — and something in you hears it and files it under <em>not yet, we're not ready for that, we've always done it this way.</em></p>
+
+    <p>That's not stubbornness. That's not ignorance. That's the Blockbuster Syndrome running at full volume — and it feels exactly like loyalty to what you built.</p>
+
+    <div class="pull-quote">
+      Blockbuster didn't lose to Netflix because streaming was inevitable. They lost because the machine running their boardroom <em>couldn't distinguish between protecting the business and protecting the self.</em>
+    </div>
+
+    <p>The evidence was available. The market was signaling clearly. The status program running inside the organization was louder than the signal.</p>
+
+    <p>The business wasn't just what the executives did — it was who they were. And changing it felt like dying.</p>
+
+    <p>This is the mechanism underneath the Blockbuster Syndrome. The machine has confused <strong>identity with strategy.</strong> What worked before isn't just a business model to be evaluated — it's the story the organization tells about itself. The proof that the original decisions were right. The validation of everyone who built their career on the existing model.</p>
+
+    <p>Changing it doesn't just mean updating the strategy. It means admitting that the thing you protected was wrong. And the machine running the people in that boardroom — the same prehistoric hardware running every business owner reading this page — treats that as a survival threat.</p>
+
+    <p>It fires the same alarm it fires for genuine danger.</p>
+
+    <p>Which is why businesses that should have seen it coming — that had every resource, every intelligence, every advantage available — still couldn't change in time.</p>
+
+    <p>Not because they were stupid. Because the machine was running louder than the evidence.</p>
+
+  </div>
+
+  <!-- RECOGNIZED BY -->
+  <div class="recognized-card">
+    <div class="recognized-title">Recognized By</div>
+    <ul class="recognized-list">
+      <li>The language: <em>"We've always done it this way"</em> and <em>"our customers know us"</em> and <em>"we don't need to change what isn't broken"</em></li>
+      <li>The resistance that arrives not as reasoned argument but as visceral alarm when change is suggested</li>
+      <li>The consultant brought in to confirm what leadership already believes rather than discover what's actually true</li>
+      <li>The gap between what the internal reports say and what the front line employees know</li>
+      <li>The meeting that reviews last year's success rather than next year's threat</li>
+      <li>The moment protecting the business and protecting the self become the same thing</li>
+    </ul>
+  </div>
+
+  <div class="content-body">
+
+    <div class="section-tag" style="margin-top: 2rem;">What It Actually Costs</div>
+
+    <p>The Blockbuster Syndrome doesn't announce itself. It arrives dressed as experience. As institutional knowledge. As the completely reasonable wisdom of someone who has been in this business long enough to know what works.</p>
+
+    <p>That's what makes it the most expensive glitch in this glossary.</p>
+
+    <p>Not because it causes dramatic failures — though it does. Because it causes <strong>slow ones.</strong> The kind where the market has already moved on before the organization realizes it was left behind. The kind where the evidence accumulates quietly for years before it becomes impossible to ignore. The kind where the people who saw it coming stopped saying anything because saying it didn't change anything.</p>
+
+    <p>Blockbuster had the resources to build streaming before Netflix did. They had the customer relationships. They had the infrastructure. They had executives who saw what was coming.</p>
+
+    <p>What they didn't have was an organization that could distinguish between a business model worth updating and an identity worth protecting.</p>
+
+    <p>The machine couldn't tell the difference.</p>
+
+    <p>It still can't. Not without a name for what it's doing.</p>
+
+    <p>That name is the beginning of everything.</p>
+
+  </div>
+
+  <!-- INQUIRY -->
+  <div class="inquiry-section">
+    <div class="inquiry-label">The Inquiry</div>
+    <div class="inquiry-question">Who is the I that cannot afford to change?</div>
+    <div class="inquiry-question-2">Where is the business that would survive if it could?</div>
+  </div>
+
+  <div class="content-body">
+    <div class="section-tag">A Note on the Inquiry</div>
+    <p>The inquiry questions in the Glitch Glossary are not rhetorical. They are designed to be asked directly and genuinely — not answered with another thought, but looked at with honest attention.</p>
+    <p>The Blockbuster Syndrome survives because the machine keeps the two things fused — the identity and the strategy. The inquiry separates them. <strong>Who is the I</strong> that cannot afford to change is not the business. It's the story the machine has been telling about the business. And that story, once named, loses most of its authority.</p>
+    <p>The business that would survive if it could is usually visible the moment the story gets quiet enough to look at clearly.</p>
+  </div>
+
+</article>
+
+<div class="divider"></div>
+
+<!-- RELATED GLITCHES -->
+<section class="related-section">
+  <div class="related-inner">
+    <div class="section-tag">Related Glitches</div>
+    <p style="color: var(--gray); font-size: 0.95rem; margin-bottom: 0.5rem;">The Blockbuster Syndrome rarely runs alone. These programs often fire together.</p>
+    <div class="related-grid">
+      <a href="corner-office-glitch.html" class="related-card">
+        <div class="related-card-tag">Entry Set 01</div>
+        <div class="related-card-title">The Corner Office Glitch</div>
+        <div class="related-card-desc">When protecting the position becomes more important than the health of the business.</div>
+      </a>
+      <a href="identity-hostage.html" class="related-card">
+        <div class="related-card-tag">Entry Set 05</div>
+        <div class="related-card-title">The Identity Hostage</div>
+        <div class="related-card-desc">The business so fused with the owner's identity it cannot become what it needs to be.</div>
+      </a>
+      <a href="founders-deaf-spot.html" class="related-card">
+        <div class="related-card-tag">Entry Set 05</div>
+        <div class="related-card-title">The Founder's Deaf Spot</div>
+        <div class="related-card-desc">The conviction that an idea only has value if it originated with the person in charge.</div>
+      </a>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- CTA -->
+<section id="cta">
+  <div class="cta-bg"></div>
+  <div class="cta-inner">
+    <div class="section-tag" style="justify-content: center;">The Glitch Glossary</div>
+    <h2 class="cta-title">NAME WHAT'S<br><span class="accent">BEEN RUNNING.</span></h2>
+    <p class="cta-body">
+      The Blockbuster Syndrome is one of <strong>thirty named programs</strong> in the complete Glitch Glossary for the Business Owner. Each one describes a specific pattern that has been running your business decisions without your permission.
+      <br><br>
+      Entry Set One — six foundation glitches including this one — is available as a <strong>free download.</strong> No form. No pitch. Just the names.
+      <br><br>
+      Because you cannot change what you cannot see. And once you can see it — everything changes.
+    </p>
+    <a href="index.html#glossary" class="btn-primary">Download Entry Set One — Free</a>
+    <a href="index.html#book" class="btn-secondary">Get the Full Book</a>
+    <p class="cta-note">Entry Set One · Six Foundation Glitches · Free Download · No purchase required</p>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-logo">GLITCH AUDIT</div>
+  <div class="footer-copy">© 2026 Kevin Donovan · glitchaudit.co</div>
+</footer>
+
+</body>
+</html>
