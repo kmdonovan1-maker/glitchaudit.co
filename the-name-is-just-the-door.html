@@ -1,0 +1,567 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Name Is Just The Door | Glitch Audit | Kevin Donovan</title>
+<meta name="description" content="The most important thing to understand before you read anything in the Glitch Glossary. The name creates distance. The distance is where the freedom lives. You don't need to label it perfectly. You just need to see it running.">
+<meta name="keywords" content="mechanical mind, awareness, seeing the glitch, glimpses vs glitches, kevin donovan, glitch audit, business patterns">
+<link rel="canonical" href="https://glitchaudit.co/the-name-is-just-the-door">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@300;400;500;600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --black: #080c10;
+    --dark: #0d1117;
+    --card: #111820;
+    --teal: #00d4c8;
+    --purple: #7b5ea7;
+    --purple-light: #9b7ec8;
+    --white: #f0f4f8;
+    --gray: #8899aa;
+    --border: rgba(0, 212, 200, 0.15);
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    background: var(--black);
+    color: var(--white);
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 300;
+    line-height: 1.7;
+    overflow-x: hidden;
+  }
+  nav {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 100;
+    padding: 1.2rem 4rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: rgba(8, 12, 16, 0.92);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border);
+  }
+  .nav-logo {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.4rem;
+    letter-spacing: 0.15em;
+    color: var(--teal);
+    text-decoration: none;
+  }
+  .nav-logo span { color: var(--white); }
+  .nav-links {
+    display: flex;
+    gap: 2.5rem;
+    list-style: none;
+  }
+  .nav-links a {
+    color: var(--gray);
+    text-decoration: none;
+    font-size: 0.85rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    transition: color 0.2s;
+  }
+  .nav-links a:hover { color: var(--teal); }
+  .nav-links a.active { color: var(--teal); }
+
+  /* HERO */
+  #hero {
+    min-height: 70vh;
+    display: flex;
+    align-items: center;
+    position: relative;
+    overflow: hidden;
+    padding: 10rem 4rem 6rem;
+  }
+  .hero-bg {
+    position: absolute;
+    inset: 0;
+    background:
+      radial-gradient(ellipse 60% 60% at 60% 40%, rgba(0, 212, 200, 0.07) 0%, transparent 70%),
+      radial-gradient(ellipse 40% 50% at 30% 60%, rgba(123, 94, 167, 0.1) 0%, transparent 60%);
+  }
+  .hero-grid {
+    position: absolute;
+    inset: 0;
+    background-image:
+      linear-gradient(rgba(0, 212, 200, 0.03) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(0, 212, 200, 0.03) 1px, transparent 1px);
+    background-size: 60px 60px;
+  }
+  .hero-content {
+    position: relative;
+    max-width: 860px;
+  }
+  .breadcrumb {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.72rem;
+    color: var(--gray);
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    margin-bottom: 1.5rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+  .breadcrumb a { color: var(--teal); text-decoration: none; }
+  .breadcrumb span { color: var(--gray); }
+  .entry-tag {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.72rem;
+    color: var(--teal);
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    margin-bottom: 1rem;
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+  }
+  .entry-tag::before {
+    content: '';
+    display: block;
+    width: 24px;
+    height: 1px;
+    background: var(--teal);
+  }
+  .hero-headline {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(3rem, 8vw, 6.5rem);
+    line-height: 0.95;
+    letter-spacing: 0.02em;
+    margin-bottom: 1.5rem;
+  }
+  .hero-headline .accent { color: var(--teal); }
+  .hero-headline .accent-purple { color: var(--purple-light); }
+  .hero-sub {
+    font-size: 1.15rem;
+    color: var(--gray);
+    max-width: 680px;
+    line-height: 1.85;
+    font-style: italic;
+    padding-left: 1.25rem;
+    border-left: 2px solid var(--teal);
+  }
+
+  /* DIVIDER */
+  .divider {
+    height: 1px;
+    background: linear-gradient(90deg, var(--teal), var(--purple), transparent);
+    opacity: 0.3;
+  }
+
+  /* CONTENT */
+  .content-section {
+    padding: 5rem 4rem;
+    max-width: 860px;
+    margin: 0 auto;
+  }
+  .section-tag {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.72rem;
+    color: var(--teal);
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    margin-bottom: 1.25rem;
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+  }
+  .section-tag::before {
+    content: '';
+    display: block;
+    width: 24px;
+    height: 1px;
+    background: var(--teal);
+  }
+  .content-body {
+    color: var(--gray);
+    font-size: 1.05rem;
+    line-height: 1.95;
+  }
+  .content-body p { margin-bottom: 1.5rem; }
+  .content-body strong { color: var(--white); font-weight: 500; }
+  .content-body em { color: var(--purple-light); font-style: italic; }
+
+  /* PULL QUOTE */
+  .pull-quote {
+    margin: 3rem 0;
+    padding: 2rem 2.5rem;
+    border-left: 3px solid var(--teal);
+    background: rgba(0, 212, 200, 0.04);
+    font-size: 1.25rem;
+    color: var(--white);
+    line-height: 1.7;
+    font-weight: 300;
+  }
+  .pull-quote em { color: var(--teal); font-style: normal; }
+
+  /* TAGLINE BOX */
+  .tagline-box {
+    background: var(--dark);
+    border: 1px solid var(--border);
+    border-top: 2px solid var(--teal);
+    padding: 3rem;
+    margin: 3rem 0;
+    text-align: center;
+  }
+  .tagline-box-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.72rem;
+    color: var(--teal);
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    margin-bottom: 1.25rem;
+  }
+  .tagline-text {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(1.4rem, 3vw, 2.2rem);
+    letter-spacing: 0.05em;
+    color: var(--white);
+    line-height: 1.4;
+  }
+  .tagline-text .accent { color: var(--teal); }
+
+  /* GLITCH GRID */
+  .glitch-grid-section {
+    padding: 4rem;
+    background: var(--dark);
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+  }
+  .glitch-grid-inner { max-width: 860px; margin: 0 auto; }
+  .glitch-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1rem;
+    margin-top: 2rem;
+  }
+  .glitch-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    padding: 1.5rem;
+    text-decoration: none;
+    transition: all 0.2s;
+    clip-path: polygon(0 0, calc(100% - 10px) 0, 100% 10px, 100% 100%, 10px 100%, 0 calc(100% - 10px));
+    position: relative;
+  }
+  .glitch-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 1px;
+    background: var(--teal);
+    opacity: 0;
+    transition: opacity 0.2s;
+  }
+  .glitch-card:hover { border-color: rgba(0,212,200,0.4); transform: translateY(-2px); }
+  .glitch-card:hover::before { opacity: 1; }
+  .glitch-card-set {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.65rem;
+    color: var(--teal);
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    margin-bottom: 0.4rem;
+  }
+  .glitch-card-title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1rem;
+    letter-spacing: 0.05em;
+    color: var(--white);
+  }
+
+  /* CTA */
+  #cta {
+    padding: 6rem 4rem;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+  .cta-bg {
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse 60% 80% at 50% 50%, rgba(0,212,200,0.05) 0%, transparent 70%);
+  }
+  .cta-inner { position: relative; max-width: 680px; margin: 0 auto; }
+  .cta-title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(2rem, 5vw, 3.5rem);
+    letter-spacing: 0.03em;
+    line-height: 1;
+    margin-bottom: 1.5rem;
+  }
+  .cta-title .accent { color: var(--teal); }
+  .cta-body {
+    color: var(--gray);
+    font-size: 1.05rem;
+    line-height: 1.85;
+    margin-bottom: 2.5rem;
+  }
+  .cta-body strong { color: var(--white); font-weight: 500; }
+  .btn-primary {
+    background: var(--teal);
+    color: var(--black);
+    padding: 1rem 2.5rem;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.9rem;
+    font-weight: 600;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    text-decoration: none;
+    display: inline-block;
+    transition: all 0.2s;
+    clip-path: polygon(0 0, calc(100% - 10px) 0, 100% 10px, 100% 100%, 10px 100%, 0 calc(100% - 10px));
+    margin-right: 1rem;
+    margin-bottom: 1rem;
+  }
+  .btn-primary:hover { background: var(--white); transform: translateY(-2px); }
+  .btn-secondary {
+    border: 1px solid var(--border);
+    color: var(--teal);
+    padding: 1rem 2.5rem;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.9rem;
+    font-weight: 500;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    text-decoration: none;
+    display: inline-block;
+    transition: all 0.2s;
+    clip-path: polygon(0 0, calc(100% - 10px) 0, 100% 10px, 100% 100%, 10px 100%, 0 calc(100% - 10px));
+    margin-bottom: 1rem;
+  }
+  .btn-secondary:hover { border-color: var(--teal); background: rgba(0,212,200,0.08); transform: translateY(-2px); }
+
+  /* FOOTER */
+  footer {
+    padding: 2rem 4rem;
+    border-top: 1px solid var(--border);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .footer-logo {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.1rem;
+    letter-spacing: 0.15em;
+    color: var(--teal);
+  }
+  .footer-copy {
+    font-size: 0.8rem;
+    color: var(--gray);
+    font-family: 'DM Mono', monospace;
+  }
+
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  .hero-content > * { animation: fadeUp 0.6s ease both; }
+  .breadcrumb { animation-delay: 0.1s; }
+  .entry-tag { animation-delay: 0.2s; }
+  .hero-headline { animation-delay: 0.3s; }
+  .hero-sub { animation-delay: 0.45s; }
+
+  @media (max-width: 768px) {
+    nav { padding: 1rem 1.5rem; }
+    .nav-links { display: none; }
+    #hero { padding: 7rem 1.5rem 3rem; }
+    .content-section { padding: 3rem 1.5rem; }
+    .glitch-grid-section { padding: 3rem 1.5rem; }
+    .glitch-grid { grid-template-columns: 1fr 1fr; }
+    #cta { padding: 4rem 1.5rem; }
+    footer { flex-direction: column; gap: 1rem; text-align: center; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="index.html" class="nav-logo">GLITCH<span>AUDIT</span></a>
+  <ul class="nav-links">
+    <li><a href="index.html#offer">Services</a></li>
+    <li><a href="index.html#revenue-glitch">Business</a></li>
+    <li><a href="immersion.html">The Immersion</a></li>
+    <li><a href="index.html#speaking">Speaking</a></li>
+    <li><a href="index.html#book">The Book</a></li>
+    <li><a href="index.html#glossary">Free Download</a></li>
+    <li><a href="index.html#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-grid"></div>
+  <div class="hero-content">
+    <div class="breadcrumb">
+      <a href="index.html">Home</a>
+      <span>/</span>
+      <a href="index.html#glossary">Glitch Glossary</a>
+      <span>/</span>
+      <span>The Name Is Just The Door</span>
+    </div>
+    <div class="entry-tag">Read This First · Foundation</div>
+    <h1 class="hero-headline">
+      THE NAME<br>
+      IS JUST<br>
+      THE <span class="accent">DOOR.</span>
+    </h1>
+    <p class="hero-sub">
+      The most important thing to understand before you read anything else in the Glitch Glossary.
+    </p>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- MAIN CONTENT -->
+<article class="content-section">
+
+  <div class="content-body">
+
+    <p>You are about to encounter a library of named programs.</p>
+
+    <p>The Blockbuster Syndrome. The Founder's Deaf Spot. The Helicopter Owner. The Cannibal Contract. The Sconce Mistake. The Bottomless Trap.</p>
+
+    <p><strong>The names are not the point.</strong></p>
+
+    <p>They never were.</p>
+
+    <div class="pull-quote">
+      The name creates distance. The distance is where the freedom lives. <em>You don't need to label it perfectly. You just need to see it running.</em>
+    </div>
+
+    <p>The moment you can watch the machine running — whatever you call it, however imprecisely you label it — that moment of seeing is the glimpse. That's the whole game.</p>
+
+    <p>The seminar world spent decades selling people increasingly sophisticated frameworks for naming their patterns. More precise taxonomies. More nuanced categories. More elaborate maps of the territory.</p>
+
+    <p>And the machine — clever as it always is — took every new framework and turned it into a new loop. A new way to stay busy without actually seeing anything.</p>
+
+    <p><em>"Was that the Founder's Deaf Spot or the Identity Hostage?"</em></p>
+    <p><em>"I'm not sure I identified that correctly."</em></p>
+    <p><em>"Let me research this more before I act."</em></p>
+
+    <p>The map became the destination. The tool became the obstacle.</p>
+
+    <p><strong>That's not what this is.</strong></p>
+
+    <p>The names in the Glitch Glossary are doors. Walk through them and leave them behind. If you catch something running in your business and you can't remember what it's called — that's fine. Better than fine.</p>
+
+    <p>The moment you noticed it running — <strong>that was already the glimpse.</strong></p>
+
+    <div class="pull-quote">
+      Two words show up on every page of this glossary.<br><br>
+      A <em>glitch</em> is the machine running its program. Not a character flaw. Not a failure of intelligence or effort. Just prehistoric hardware doing exactly what it was built to do — in a context it was never designed for.<br><br>
+      A <em>glimpse</em> is the moment you step outside it. Brief. Unannounced. Requiring no technique. The moment the noise separates from the signal and something clearer comes through.<br><br>
+      You have been having glimpses your whole life. This glossary just helps you recognize them for what they are.
+    </div>
+
+    <p>Open any entry. Find the one that makes you slightly uncomfortable — the one where something recognizable stirs before you've finished the first paragraph.</p>
+
+    <p>That discomfort is the signal.</p>
+
+    <p>That's the glitch introducing itself.</p>
+
+    <p>You don't need to name it perfectly. You just need to see it running.</p>
+
+    <p><strong>That's enough. It has always been enough.</strong></p>
+
+  </div>
+
+  <!-- TAGLINE BOX -->
+  <div class="tagline-box">
+    <div class="tagline-box-label">The Only Thing That Matters</div>
+    <div class="tagline-text">
+      The name creates distance.<br>
+      The distance is where the freedom lives.<br>
+      <span class="accent">You don't need to label it perfectly.</span><br>
+      You just need to see it running.
+    </div>
+  </div>
+
+</article>
+
+<div class="divider"></div>
+
+<!-- GLITCH GRID -->
+<section class="glitch-grid-section">
+  <div class="glitch-grid-inner">
+    <div class="section-tag">Now Go Find Yours</div>
+    <p style="color:var(--gray); font-size:0.95rem; max-width:560px;">Open any entry. Find the one that makes you slightly uncomfortable. That discomfort is the signal.</p>
+    <div class="glitch-grid">
+      <a href="blockbuster-syndrome.html" class="glitch-card">
+        <div class="glitch-card-set">Entry Set 01</div>
+        <div class="glitch-card-title">The Blockbuster Syndrome</div>
+      </a>
+      <a href="build-it-they-will-come.html" class="glitch-card">
+        <div class="glitch-card-set">Entry Set 01</div>
+        <div class="glitch-card-title">The Build It They Will Come Loop</div>
+      </a>
+      <a href="superior-vendor-glitch.html" class="glitch-card">
+        <div class="glitch-card-set">Entry Set 01</div>
+        <div class="glitch-card-title">The Superior Vendor Glitch</div>
+      </a>
+      <a href="numbers-blindness-loop.html" class="glitch-card">
+        <div class="glitch-card-set">Entry Set 01</div>
+        <div class="glitch-card-title">The Numbers Blindness Loop</div>
+      </a>
+      <a href="corner-office-glitch.html" class="glitch-card">
+        <div class="glitch-card-set">Entry Set 01</div>
+        <div class="glitch-card-title">The Corner Office Glitch</div>
+      </a>
+      <a href="founders-deaf-spot.html" class="glitch-card">
+        <div class="glitch-card-set">Entry Set 05</div>
+        <div class="glitch-card-title">The Founder's Deaf Spot</div>
+      </a>
+      <a href="sconce-mistake.html" class="glitch-card">
+        <div class="glitch-card-set">Entry Set 05</div>
+        <div class="glitch-card-title">The Sconce Mistake</div>
+      </a>
+      <a href="bottomless-trap.html" class="glitch-card">
+        <div class="glitch-card-set">Entry Set 02</div>
+        <div class="glitch-card-title">The Bottomless Trap</div>
+      </a>
+      <a href="cannibal-contract.html" class="glitch-card">
+        <div class="glitch-card-set">Entry Set 02</div>
+        <div class="glitch-card-title">The Cannibal Contract</div>
+      </a>
+      <a href="helicopter-owner.html" class="glitch-card">
+        <div class="glitch-card-set">Entry Set 05</div>
+        <div class="glitch-card-title">The Helicopter Owner</div>
+      </a>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- CTA -->
+<section id="cta">
+  <div class="cta-bg"></div>
+  <div class="cta-inner">
+    <div class="section-tag" style="justify-content:center;">The Free Download</div>
+    <h2 class="cta-title">START WITH<br><span class="accent">ENTRY SET ONE.</span></h2>
+    <p class="cta-body">
+      Six foundation glitches. The programs most likely running your business right now. <strong>Free. No purchase required.</strong>
+      <br><br>
+      Remember — the name is just the door. Walk through it and leave it behind. The seeing is what matters.
+    </p>
+    <a href="index.html#glossary" class="btn-primary">Download Entry Set One — Free</a>
+    <a href="index.html#book" class="btn-secondary">Get the Full Book</a>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-logo">GLITCH AUDIT</div>
+  <div class="footer-copy">© 2026 Kevin Donovan · glitchaudit.co</div>
+</footer>
+
+</body>
+</html>
