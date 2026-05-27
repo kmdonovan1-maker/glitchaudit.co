@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Cannibal Contract | Glitch Glossary | Glitch Audit</title>
+<meta name="description" content="Breaking the premium promise to extract additional short-term revenue from the customers who trusted that promise most. Netflix added ads. Prime added ads. Your customers felt it — even if they couldn't name why.">
+<meta name="keywords" content="cannibal contract, broken brand promise, customer trust, premium subscription, mechanical mind, glitch audit">
+<link rel="canonical" href="https://glitchaudit.co/cannibal-contract">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@300;400;500;600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --black: #080c10; --dark: #0d1117; --card: #111820;
+    --teal: #00d4c8; --purple: #7b5ea7; --purple-light: #9b7ec8;
+    --white: #f0f4f8; --gray: #8899aa; --border: rgba(0, 212, 200, 0.15);
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body { background: var(--black); color: var(--white); font-family: 'DM Sans', sans-serif; font-weight: 300; line-height: 1.7; overflow-x: hidden; }
+  nav { position: fixed; top: 0; width: 100%; z-index: 100; padding: 1.2rem 4rem; display: flex; justify-content: space-between; align-items: center; background: rgba(8,12,16,0.92); backdrop-filter: blur(12px); border-bottom: 1px solid var(--border); }
+  .nav-logo { font-family: 'Bebas Neue', sans-serif; font-size: 1.4rem; letter-spacing: 0.15em; color: var(--teal); text-decoration: none; }
+  .nav-logo span { color: var(--white); }
+  .nav-links { display: flex; gap: 2.5rem; list-style: none; }
+  .nav-links a { color: var(--gray); text-decoration: none; font-size: 0.85rem; letter-spacing: 0.08em; text-transform: uppercase; transition: color 0.2s; }
+  .nav-links a:hover { color: var(--teal); }
+  #hero { min-height: 60vh; display: flex; align-items: center; position: relative; overflow: hidden; padding: 10rem 4rem 5rem; }
+  .hero-bg { position: absolute; inset: 0; background: radial-gradient(ellipse 50% 60% at 80% 40%, rgba(123,94,167,0.12) 0%, transparent 70%), radial-gradient(ellipse 30% 40% at 20% 60%, rgba(0,212,200,0.05) 0%, transparent 60%); }
+  .hero-grid { position: absolute; inset: 0; background-image: linear-gradient(rgba(0,212,200,0.03) 1px, transparent 1px), linear-gradient(90deg, rgba(0,212,200,0.03) 1px, transparent 1px); background-size: 60px 60px; }
+  .hero-content { position: relative; max-width: 900px; }
+  .breadcrumb { font-family: 'DM Mono', monospace; font-size: 0.72rem; color: var(--gray); letter-spacing: 0.15em; text-transform: uppercase; margin-bottom: 1.5rem; display: flex; align-items: center; gap: 0.5rem; }
+  .breadcrumb a { color: var(--teal); text-decoration: none; }
+  .entry-tag { font-family: 'DM Mono', monospace; font-size: 0.72rem; color: var(--teal); letter-spacing: 0.2em; text-transform: uppercase; margin-bottom: 1rem; display: flex; align-items: center; gap: 0.75rem; }
+  .entry-tag::before { content: ''; display: block; width: 24px; height: 1px; background: var(--teal); }
+  .hero-headline { font-family: 'Bebas Neue', sans-serif; font-size: clamp(3rem, 8vw, 6.5rem); line-height: 0.95; letter-spacing: 0.02em; margin-bottom: 1.5rem; }
+  .hero-headline .accent { color: var(--teal); }
+  .hero-headline .accent-purple { color: var(--purple-light); }
+  .hero-sub { font-size: 1.15rem; color: var(--gray); max-width: 680px; line-height: 1.85; font-style: italic; padding-left: 1.25rem; border-left: 2px solid var(--teal); }
+  .divider { height: 1px; background: linear-gradient(90deg, var(--teal), var(--purple), transparent); opacity: 0.3; }
+  .content-section { padding: 5rem 4rem; max-width: 860px; margin: 0 auto; }
+  .section-tag { font-family: 'DM Mono', monospace; font-size: 0.72rem; color: var(--teal); letter-spacing: 0.2em; text-transform: uppercase; margin-bottom: 1.25rem; display: flex; align-items: center; gap: 0.75rem; }
+  .section-tag::before { content: ''; display: block; width: 24px; height: 1px; background: var(--teal); }
+  .content-body { color: var(--gray); font-size: 1.05rem; line-height: 1.95; }
+  .content-body p { margin-bottom: 1.5rem; }
+  .content-body strong { color: var(--white); font-weight: 500; }
+  .content-body em { color: var(--purple-light); font-style: italic; }
+  .pull-quote { margin: 3rem 0; padding: 2rem 2.5rem; border-left: 3px solid var(--teal); background: rgba(0,212,200,0.04); font-size: 1.2rem; color: var(--white); line-height: 1.7; font-weight: 300; }
+  .pull-quote em { color: var(--teal); font-style: normal; }
+  .recognized-card { background: var(--card); border: 1px solid var(--border); padding: 2.5rem; margin: 2.5rem 0; position: relative; clip-path: polygon(0 0, calc(100% - 16px) 0, 100% 16px, 100% 100%, 16px 100%, 0 calc(100% - 16px)); }
+  .recognized-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px; background: linear-gradient(90deg, var(--purple), var(--teal)); }
+  .recognized-title { font-family: 'DM Mono', monospace; font-size: 0.72rem; color: var(--purple-light); letter-spacing: 0.2em; text-transform: uppercase; margin-bottom: 1.25rem; }
+  .recognized-list { list-style: none; padding: 0; }
+  .recognized-list li { color: var(--gray); font-size: 0.95rem; padding: 0.6rem 0; border-bottom: 1px solid rgba(255,255,255,0.04); display: flex; align-items: flex-start; gap: 0.75rem; line-height: 1.6; }
+  .recognized-list li::before { content: '→'; color: var(--purple-light); flex-shrink: 0; margin-top: 0.1rem; }
+  .recognized-list li:last-child { border-bottom: none; }
+  .inquiry-section { background: var(--dark); border: 1px solid var(--border); border-top: 2px solid var(--teal); padding: 3rem; margin: 3rem 0; text-align: center; }
+  .inquiry-label { font-family: 'DM Mono', monospace; font-size: 0.72rem; color: var(--teal); letter-spacing: 0.2em; text-transform: uppercase; margin-bottom: 1.25rem; }
+  .inquiry-question { font-family: 'Bebas Neue', sans-serif; font-size: clamp(1.4rem, 3vw, 2rem); letter-spacing: 0.05em; color: var(--white); line-height: 1.3; margin-bottom: 0.75rem; }
+  .inquiry-question-2 { font-family: 'Bebas Neue', sans-serif; font-size: clamp(1.2rem, 2.5vw, 1.6rem); letter-spacing: 0.05em; color: var(--purple-light); line-height: 1.3; }
+  .foundation-note { background: var(--card); border: 1px solid var(--border); border-left: 3px solid var(--purple-light); padding: 1.5rem 2rem; margin: 2.5rem 0; }
+  .foundation-note-label { font-family: 'DM Mono', monospace; font-size: 0.65rem; color: var(--purple-light); letter-spacing: 0.2em; text-transform: uppercase; margin-bottom: 0.75rem; }
+  .foundation-note-text { color: var(--gray); font-size: 0.9rem; line-height: 1.7; }
+  .foundation-note-text a { color: var(--teal); text-decoration: none; }
+  .related-section { padding: 4rem; background: var(--dark); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
+  .related-inner { max-width: 860px; margin: 0 auto; }
+  .related-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; margin-top: 2rem; }
+  .related-card { background: var(--card); border: 1px solid var(--border); padding: 1.75rem; text-decoration: none; transition: all 0.2s; clip-path: polygon(0 0, calc(100% - 12px) 0, 100% 12px, 100% 100%, 12px 100%, 0 calc(100% - 12px)); position: relative; }
+  .related-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 1px; background: var(--teal); opacity: 0; transition: opacity 0.2s; }
+  .related-card:hover { border-color: rgba(0,212,200,0.4); transform: translateY(-2px); }
+  .related-card:hover::before { opacity: 1; }
+  .related-card-tag { font-family: 'DM Mono', monospace; font-size: 0.65rem; color: var(--teal); letter-spacing: 0.15em; text-transform: uppercase; margin-bottom: 0.5rem; }
+  .related-card-title { font-family: 'Bebas Neue', sans-serif; font-size: 1.1rem; letter-spacing: 0.05em; color: var(--white); }
+  #cta { padding: 6rem 4rem; text-align: center; position: relative; overflow: hidden; }
+  .cta-bg { position: absolute; inset: 0; background: radial-gradient(ellipse 60% 80% at 50% 50%, rgba(0,212,200,0.05) 0%, transparent 70%); }
+  .cta-inner { position: relative; max-width: 680px; margin: 0 auto; }
+  .cta-title { font-family: 'Bebas Neue', sans-serif; font-size: clamp(2rem, 5vw, 3.5rem); letter-spacing: 0.03em; line-height: 1; margin-bottom: 1.5rem; }
+  .cta-title .accent { color: var(--teal); }
+  .cta-body { color: var(--gray); font-size: 1.05rem; line-height: 1.85; margin-bottom: 2.5rem; }
+  .cta-body strong { color: var(--white); font-weight: 500; }
+  .btn-primary { background: var(--teal); color: var(--black); padding: 1rem 2.5rem; font-family: 'DM Sans', sans-serif; font-size: 0.9rem; font-weight: 600; letter-spacing: 0.05em; text-transform: uppercase; text-decoration: none; display: inline-block; transition: all 0.2s; clip-path: polygon(0 0, calc(100% - 10px) 0, 100% 10px, 100% 100%, 10px 100%, 0 calc(100% - 10px)); margin-right: 1rem; margin-bottom: 1rem; }
+  .btn-primary:hover { background: var(--white); transform: translateY(-2px); }
+  .btn-secondary { border: 1px solid var(--border); color: var(--teal); padding: 1rem 2.5rem; font-family: 'DM Sans', sans-serif; font-size: 0.9rem; font-weight: 500; letter-spacing: 0.05em; text-transform: uppercase; text-decoration: none; display: inline-block; transition: all 0.2s; clip-path: polygon(0 0, calc(100% - 10px) 0, 100% 10px, 100% 100%, 10px 100%, 0 calc(100% - 10px)); margin-bottom: 1rem; }
+  .btn-secondary:hover { border-color: var(--teal); background: rgba(0,212,200,0.08); transform: translateY(-2px); }
+  footer { padding: 2rem 4rem; border-top: 1px solid var(--border); display: flex; justify-content: space-between; align-items: center; }
+  .footer-logo { font-family: 'Bebas Neue', sans-serif; font-size: 1.1rem; letter-spacing: 0.15em; color: var(--teal); }
+  .footer-copy { font-size: 0.8rem; color: var(--gray); font-family: 'DM Mono', monospace; }
+  @keyframes fadeUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+  .hero-content > * { animation: fadeUp 0.6s ease both; }
+  .breadcrumb { animation-delay: 0.1s; } .entry-tag { animation-delay: 0.2s; } .hero-headline { animation-delay: 0.3s; } .hero-sub { animation-delay: 0.45s; }
+  @media (max-width: 768px) {
+    nav { padding: 1rem 1.5rem; } .nav-links { display: none; }
+    #hero { padding: 7rem 1.5rem 3rem; } .content-section { padding: 3rem 1.5rem; }
+    .related-section { padding: 3rem 1.5rem; } .related-grid { grid-template-columns: 1fr; }
+    #cta { padding: 4rem 1.5rem; } footer { flex-direction: column; gap: 1rem; text-align: center; }
+  }
+</style>
+</head>
+<body>
+<nav>
+  <a href="index.html" class="nav-logo">GLITCH<span>AUDIT</span></a>
+  <ul class="nav-links">
+    <li><a href="index.html#offer">Services</a></li>
+    <li><a href="index.html#revenue-glitch">Business</a></li>
+    <li><a href="immersion.html">The Immersion</a></li>
+    <li><a href="index.html#speaking">Speaking</a></li>
+    <li><a href="index.html#book">The Book</a></li>
+    <li><a href="index.html#glossary">Free Download</a></li>
+    <li><a href="index.html#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<section id="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-grid"></div>
+  <div class="hero-content">
+    <div class="breadcrumb">
+      <a href="index.html">Home</a>
+      <span>/</span>
+      <a href="index.html#glossary">Glitch Glossary</a>
+      <span>/</span>
+      <span>The Cannibal Contract</span>
+    </div>
+    <div class="entry-tag">Entry Set 02 · Customer Experience Glitches</div>
+    <h1 class="hero-headline">
+      THE CANNIBAL<br>
+      <span class="accent">CONTRACT</span>
+    </h1>
+    <p class="hero-sub">Breaking the premium promise to extract additional short-term revenue from the customers who trusted that promise most. Netflix added ads. Prime added ads. Your customers felt it — even if they couldn't name why.</p>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<article class="content-section">
+  <div class="foundation-note">
+    <div class="foundation-note-label">Before You Read</div>
+    <div class="foundation-note-text">The name is just the door. The seeing is what matters. If you recognize something running in your business and can't name it perfectly — that's fine. <a href="the-name-is-just-the-door.html">Read why →</a></div>
+  </div>
+  <div class="section-tag">The Glitch</div>
+  <div class="content-body">
+<p>For years the premium subscription promise was simple and it was powerful.</p>
+<p>Pay more. Get the experience without interruption. No commercials. No compromises. Content worth paying for — delivered to you without the noise that comes with the free version.</p>
+<p>You are valued enough as a member of this tribe to not be sold to while you are here.</p>
+<p>That was the contract. Not the terms of service. The human contract. The unspoken agreement between a business and its customer that says — <em>we see you, we value you, we will keep the promise we made when you chose us.</em></p>
+<p>Then the quarterly number needed help.</p>
+<div class="pull-quote">
+Prime added commercials to the premium tier. YouTube interrupted three-hour ambient music channels with advertisements. <em>The business broke its own premium promise to extract a few more dollars from the people who trusted it most.</em>
+</div>
+<p>And you felt it.</p>
+<p>Not as analysis. As biology. The tribal alarm fired — I was promised something and it was taken away. The brain doesn't habituate to that feeling the way the revenue model assumes it will. It builds an avoidance response. It starts looking for the exit.</p>
+<p>This isn't just a streaming problem. It runs in every business that has ever changed the terms after the relationship was established. The product that got smaller but kept the same price. The service that added fees after the customer was already dependent. The loyalty program that rewrote the rewards after the points were accumulated.</p>
+<p>Every generation finds a more sophisticated way to avoid advertising. VCR fast-forward. TiVo. Ad blockers. Premium tiers. Platform abandonment entirely.</p>
+<p><strong>Blockbuster thought their customers had nowhere else to go too.</strong></p>
+<p>The Cannibal Contract doesn't just cost the immediate revenue it was trying to protect. It trains the most loyal customers — the ones who paid more precisely because they valued the relationship — that the relationship can be changed without notice. And once that trust is broken it is extraordinarily expensive to rebuild.</p>
+</div>
+  <div class="recognized-card">
+    <div class="recognized-title">Recognized By</div>
+    <ul class="recognized-list">
+          <li>The premium tier that starts showing ads after years without them</li>
+          <li>Pricing or terms that change after the customer is already committed</li>
+          <li>The product that gets smaller while the price stays the same</li>
+          <li>Loyalty program rewards that get reduced after the points are accumulated</li>
+          <li>Customer complaints that use the word <em>"betrayal"</em> rather than disappointment</li>
+          <li>Churn rates that spike among the oldest and most loyal customers — the ones who remember the original promise</li>
+    </ul>
+  </div>
+  <div class="inquiry-section">
+    <div class="inquiry-label">The Inquiry</div>
+    <div class="inquiry-question">What did we promise when they joined — and are we still keeping it?</div>
+    <div class="inquiry-question-2">What are we training our most loyal customers to feel every time they open our app?</div>
+  </div>
+  <div class="content-body">
+    <div class="section-tag">A Note on the Inquiry</div>
+    <p>The Cannibal Contract glitch runs because the quarterly number feels more real than the relationship that produced it. The inquiry asks a different accounting question — not what does breaking this promise earn us this quarter but what does it cost us in the relationship that generates every future quarter. The math almost always favors keeping the promise.</p>
+  </div>
+</article>
+
+<div class="divider"></div>
+
+<section class="related-section">
+  <div class="related-inner">
+    <div class="section-tag">Related Glitches</div>
+    <p style="color:var(--gray);font-size:0.95rem;margin-bottom:0.5rem;">These programs often run alongside The Cannibal Contract.</p>
+    <div class="related-grid">
+      <a href="bottomless-trap.html" class="related-card">
+        <div class="related-card-tag">Entry Set 02</div>
+        <div class="related-card-title">The Bottomless Trap</div>
+      </a>
+      <a href="superior-vendor-glitch.html" class="related-card">
+        <div class="related-card-tag">Entry Set 01</div>
+        <div class="related-card-title">The Superior Vendor Glitch</div>
+      </a>
+      <a href="blockbuster-syndrome.html" class="related-card">
+        <div class="related-card-tag">Entry Set 01</div>
+        <div class="related-card-title">The Blockbuster Syndrome</div>
+      </a>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<section id="cta">
+  <div class="cta-bg"></div>
+  <div class="cta-inner">
+    <div class="section-tag" style="justify-content:center;">The Glitch Glossary</div>
+    <h2 class="cta-title">NAME WHAT'S<br><span class="accent">BEEN RUNNING.</span></h2>
+    <p class="cta-body">
+      The Cannibal Contract is one of <strong>thirty named programs</strong> in the complete Glitch Glossary for the Business Owner.
+      <br><br>
+      Entry Set One — six foundation glitches — is available as a <strong>free download.</strong> The complete Glossary and the full book go deeper into every program running your business.
+      <br><br>
+      Remember — the name is just the door. The seeing is what matters.
+    </p>
+    <a href="index.html#glossary" class="btn-primary">Download Entry Set One — Free</a>
+    <a href="index.html#book" class="btn-secondary">Get the Full Book</a>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-logo">GLITCH AUDIT</div>
+  <div class="footer-copy">© 2026 Kevin Donovan · glitchaudit.co</div>
+</footer>
+</body>
+</html>
