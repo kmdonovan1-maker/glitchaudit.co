@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://glitchaudit.co
+Sitemap: https://glitchaudit.co/sitemap.xml
