@@ -1,0 +1,1408 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Glitch Audit | Kevin Donovan</title>
+<link rel="canonical" href="https://glitchaudit.co">
+<meta name="description" content="Something has been running your decisions your entire life. It has a name. Glimpses vs Glitches — the framework that identifies the prehistoric programs running your business, your creative, your thinking and your life.">
+<!-- Open Graph / Facebook -->
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://glitchaudit.co/">
+<meta property="og:title" content="Glitch Audit | Kevin Donovan">
+<meta property="og:description" content="Something has been running your decisions your entire life. It has a name. Glimpses vs Glitches — the framework that identifies the prehistoric programs running your business, your creative, your thinking and your life.">
+<meta property="og:image" content="https://glitchaudit.co/glimpses-cover.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:site_name" content="Glitch Audit">
+<!-- Twitter Card -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:url" content="https://glitchaudit.co/">
+<meta name="twitter:title" content="Glitch Audit | Kevin Donovan">
+<meta name="twitter:description" content="Something has been running your decisions your entire life. It has a name. Glimpses vs Glitches — the framework that identifies the prehistoric programs running your business, your creative, your thinking and your life.">
+<meta name="twitter:image" content="https://glitchaudit.co/glimpses-cover.png">
+<!-- LinkedIn -->
+<meta property="og:locale" content="en_US">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@300;400;500;600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --black: #080c10;
+    --dark: #0d1117;
+    --card: #111820;
+    --teal: #00d4c8;
+    --teal-dim: #00a89e;
+    --purple: #7b5ea7;
+    --purple-light: #9b7ec8;
+    --white: #f0f4f8;
+    --gray: #8899aa;
+    --border: rgba(0, 212, 200, 0.15);
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    background: var(--black);
+    color: var(--white);
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 300;
+    line-height: 1.7;
+    overflow-x: hidden;
+  }
+
+  /* NAV */
+  nav {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 100;
+    padding: 1.2rem 4rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: rgba(8, 12, 16, 0.92);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border);
+  }
+  .nav-logo {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.4rem;
+    letter-spacing: 0.15em;
+    color: var(--teal);
+    text-decoration: none;
+  }
+  .nav-logo span { color: var(--white); }
+  .nav-links { display: flex; gap: 2rem; list-style: none; }
+  .nav-links a {
+    color: var(--gray);
+    text-decoration: none;
+    font-size: 0.8rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    transition: color 0.2s;
+  }
+  .nav-links a:hover { color: var(--teal); }
+
+  /* HERO */
+  #hero {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    position: relative;
+    overflow: hidden;
+    padding: 8rem 4rem 6rem;
+  }
+  .hero-bg {
+    position: absolute;
+    inset: 0;
+    background:
+      radial-gradient(ellipse 60% 50% at 70% 50%, rgba(123, 94, 167, 0.12) 0%, transparent 70%),
+      radial-gradient(ellipse 40% 60% at 30% 30%, rgba(0, 212, 200, 0.06) 0%, transparent 60%);
+  }
+  .hero-grid {
+    position: absolute;
+    inset: 0;
+    background-image:
+      linear-gradient(rgba(0, 212, 200, 0.03) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(0, 212, 200, 0.03) 1px, transparent 1px);
+    background-size: 60px 60px;
+  }
+  .hero-content { position: relative; max-width: 780px; }
+  .hero-tag {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.75rem;
+    color: var(--teal);
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    margin-bottom: 1.5rem;
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+  }
+  .hero-tag::before { content: ''; display: block; width: 30px; height: 1px; background: var(--teal); }
+  .hero-headline {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(3.5rem, 8vw, 7rem);
+    line-height: 0.95;
+    letter-spacing: 0.02em;
+    margin-bottom: 1.5rem;
+  }
+  .hero-headline .accent { color: var(--teal); }
+  .hero-headline .accent-purple { color: var(--purple-light); }
+  .hero-sub {
+    font-size: 1.15rem;
+    color: var(--gray);
+    max-width: 560px;
+    margin-bottom: 2.5rem;
+    line-height: 1.8;
+  }
+  .hero-sub strong { color: var(--white); font-weight: 500; }
+  .btn-group { display: flex; gap: 1rem; flex-wrap: wrap; }
+
+  /* BUTTONS */
+  .btn-primary {
+    background: var(--teal);
+    color: var(--black);
+    padding: 0.9rem 2rem;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.9rem;
+    font-weight: 600;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    text-decoration: none;
+    transition: all 0.2s;
+    clip-path: polygon(0 0, calc(100% - 10px) 0, 100% 10px, 100% 100%, 10px 100%, 0 calc(100% - 10px));
+    display: inline-block;
+  }
+  .btn-primary:hover { background: var(--white); transform: translateY(-2px); }
+  .btn-secondary {
+    border: 1px solid var(--border);
+    color: var(--teal);
+    padding: 0.9rem 2rem;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.9rem;
+    font-weight: 500;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    text-decoration: none;
+    transition: all 0.2s;
+    clip-path: polygon(0 0, calc(100% - 10px) 0, 100% 10px, 100% 100%, 10px 100%, 0 calc(100% - 10px));
+    display: inline-block;
+  }
+  .btn-secondary:hover { border-color: var(--teal); background: rgba(0, 212, 200, 0.08); transform: translateY(-2px); }
+
+  /* SECTIONS */
+  section { padding: 6rem 4rem; }
+  .section-tag {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.72rem;
+    color: var(--teal);
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    margin-bottom: 1rem;
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+  }
+  .section-tag::before { content: ''; display: block; width: 24px; height: 1px; background: var(--teal); }
+  .section-title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(2.5rem, 5vw, 4rem);
+    line-height: 1;
+    letter-spacing: 0.03em;
+    margin-bottom: 1.5rem;
+  }
+  .section-title .accent { color: var(--teal); }
+  .section-title .accent-purple { color: var(--purple-light); }
+  .section-body { color: var(--gray); max-width: 640px; font-size: 1.05rem; line-height: 1.85; }
+  .section-body strong { color: var(--white); font-weight: 500; }
+
+  /* OFFER GRID */
+  .offer-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    align-items: start;
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+  .offer-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    padding: 2rem;
+    margin-bottom: 1.5rem;
+    position: relative;
+    clip-path: polygon(0 0, calc(100% - 16px) 0, 100% 16px, 100% 100%, 16px 100%, 0 calc(100% - 16px));
+  }
+  .offer-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 2px;
+    background: linear-gradient(90deg, var(--teal), var(--purple));
+  }
+  .offer-card-title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.4rem;
+    letter-spacing: 0.08em;
+    color: var(--white);
+    margin-bottom: 0.5rem;
+  }
+  .offer-card-price {
+    font-family: 'DM Mono', monospace;
+    font-size: 1.4rem;
+    color: var(--teal);
+    margin-bottom: 0.75rem;
+  }
+  .offer-card-desc { color: var(--gray); font-size: 0.95rem; line-height: 1.7; }
+  .offer-list { list-style: none; margin: 1.5rem 0; }
+  .offer-list li {
+    color: var(--gray);
+    font-size: 0.95rem;
+    padding: 0.5rem 0;
+    border-bottom: 1px solid rgba(255,255,255,0.04);
+    display: flex;
+    align-items: flex-start;
+    gap: 0.75rem;
+  }
+  .offer-list li::before { content: '→'; color: var(--teal); flex-shrink: 0; margin-top: 0.1rem; }
+
+  /* BOOK COVERS IN SECTIONS */
+ .section-book-cover {
+  width: 150px;
+  height: 225px;
+  object-fit: cover;
+  object-position: center top;
+  display: block;
+  margin-bottom: 0.75rem;
+  box-shadow: 0 0 30px rgba(123,94,167,0.3), 0 0 60px rgba(0,212,200,0.1);
+  transition: transform 0.3s;
+}
+.section-book-cover:hover { transform: translateY(-4px); }
+
+  /* PDF DOWNLOAD FORM */
+  .pdf-email-input {
+    background: var(--black);
+    border: 1px solid var(--border);
+    color: var(--white);
+    padding: 0.85rem 1rem;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.95rem;
+    outline: none;
+    width: 100%;
+    margin-bottom: 0.75rem;
+    transition: border-color 0.2s;
+  }
+  .pdf-email-input:focus { border-color: var(--teal); }
+
+  /* SPEAKING */
+  .speaking-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 1.5rem;
+    margin-top: 3rem;
+  }
+  .speaking-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    padding: 1.75rem;
+    clip-path: polygon(0 0, calc(100% - 12px) 0, 100% 12px, 100% 100%, 12px 100%, 0 calc(100% - 12px));
+    transition: border-color 0.2s;
+  }
+  .speaking-card:hover { border-color: rgba(0, 212, 200, 0.4); }
+  .speaking-card-icon { font-size: 1.5rem; margin-bottom: 1rem; }
+  .speaking-card-title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.1rem;
+    letter-spacing: 0.08em;
+    color: var(--teal);
+    margin-bottom: 0.5rem;
+  }
+  .speaking-card-desc { color: var(--gray); font-size: 0.9rem; line-height: 1.7; }
+
+  /* CREDIBILITY */
+  .cred-brands {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+    justify-content: center;
+    margin-top: 3rem;
+    margin-bottom: 3rem;
+  }
+  .cred-brand {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.75rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--gray);
+    border: 1px solid rgba(255,255,255,0.08);
+    padding: 0.5rem 1rem;
+    transition: all 0.2s;
+  }
+  .cred-brand:hover { color: var(--teal); border-color: var(--border); }
+  .cred-divider { width: 60px; height: 1px; background: var(--border); margin: 2rem auto; }
+  .cred-awards { display: flex; gap: 2rem; justify-content: center; flex-wrap: wrap; margin-bottom: 1rem; }
+  .cred-award {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.8rem;
+    color: var(--purple-light);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+  }
+  .cred-quote {
+    font-size: 1.3rem;
+    color: var(--white);
+    font-weight: 300;
+    font-style: italic;
+    max-width: 680px;
+    margin: 2rem auto 0;
+    line-height: 1.7;
+  }
+  .cred-quote strong { color: var(--teal); font-style: normal; font-weight: 500; }
+
+  /* CONTACT */
+  .contact-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 5rem;
+    align-items: start;
+    max-width: 1000px;
+    margin: 0 auto;
+  }
+  .contact-note {
+    color: var(--gray);
+    font-size: 0.9rem;
+    margin-top: 1.5rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid var(--border);
+    line-height: 1.8;
+  }
+  form { display: flex; flex-direction: column; gap: 1.25rem; }
+  .form-group { display: flex; flex-direction: column; gap: 0.4rem; }
+  label {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.72rem;
+    color: var(--teal);
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+  }
+  input, textarea, select {
+    background: var(--card);
+    border: 1px solid var(--border);
+    color: var(--white);
+    padding: 0.85rem 1rem;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.95rem;
+    outline: none;
+    transition: border-color 0.2s;
+    width: 100%;
+  }
+  input:focus, textarea:focus, select:focus { border-color: var(--teal); }
+  textarea { resize: vertical; min-height: 130px; }
+  select option { background: var(--card); }
+  .form-note { font-size: 0.8rem; color: var(--gray); font-style: italic; }
+
+  /* FOOTER */
+  footer {
+    padding: 2rem 4rem;
+    border-top: 1px solid var(--border);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .footer-logo { font-family: 'Bebas Neue', sans-serif; font-size: 1.1rem; letter-spacing: 0.15em; color: var(--teal); }
+  .footer-copy { font-size: 0.8rem; color: var(--gray); font-family: 'DM Mono', monospace; }
+
+  /* ANIMATIONS */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(24px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  .hero-content > * { animation: fadeUp 0.7s ease both; }
+  .hero-tag { animation-delay: 0.1s; }
+  .hero-headline { animation-delay: 0.2s; }
+  .hero-sub { animation-delay: 0.35s; }
+  .btn-group { animation-delay: 0.5s; }
+
+  /* RESPONSIVE */
+  @media (max-width: 768px) {
+    nav { padding: 1rem 1.5rem; }
+    .nav-links { display: none; }
+    section { padding: 4rem 1.5rem; }
+    #hero { padding: 7rem 1.5rem 4rem; min-height: auto; }
+    .hero-headline { font-size: 2.8rem !important; }
+    .offer-grid { grid-template-columns: 1fr; gap: 2rem; }
+    .speaking-grid { grid-template-columns: 1fr; }
+    .contact-grid { grid-template-columns: 1fr; gap: 2.5rem; }
+    .cred-brands { gap: 0.5rem; }
+    .cred-brand { font-size: 0.65rem; padding: 0.4rem 0.75rem; }
+    footer { flex-direction: column; gap: 1rem; text-align: center; padding: 1.5rem; }
+    .btn-group { flex-direction: column; }
+    .btn-primary, .btn-secondary { text-align: center; width: 100%; }
+    .offer-card { padding: 1.5rem; }
+  }
+  @media (max-width: 480px) {
+    .hero-headline { font-size: 2.2rem !important; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="#hero" class="nav-logo">GLITCH<span>AUDIT</span></a>
+  <ul class="nav-links">
+    <li><a href="#business-owner">Business</a></li>
+    <li><a href="#awareness-seeker">Awareness</a></li>
+    <li><a href="#over-thinker">Over Thinker</a></li>
+    <li><a href="#agencies">Agencies</a></li>
+    <li><a href="#ai-governance">AI Governance</a></li>
+    <li><a href="immersion.html">The Immersion</a></li>
+    <li><a href="#speaking">Speaking</a></li>
+    <li><a href="#glitch-posts">Glitch Library</a></li>
+    <li><a href="#credibility">Credits</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-grid"></div>
+  <div style="position:relative; width:100%; display:grid; grid-template-columns:1fr 1fr; gap:4rem; align-items:center; max-width:1200px; margin:0 auto;">
+
+    <!-- LEFT -->
+    <div class="hero-content" style="max-width:100%;">
+      <div class="hero-tag">Kevin Donovan · glitchaudit.co</div>
+      <h1 class="hero-headline">
+        SOMETHING<br>
+        HAS BEEN<br>
+        RUNNING YOUR<br>
+        <span class="accent">DECISIONS.</span><br>
+        <span class="accent-purple">IT HAS A NAME.</span>
+      </h1>
+      <p class="hero-sub">
+        The same prehistoric hardware running every boardroom, every creative brief and every bad decision you've watched yourself make — has been running without a manual.
+        <br><br>
+        <strong>Until now.</strong>
+      </p>
+      <div class="btn-group">
+        <a href="#business-owner" class="btn-primary">For Business Owners</a>
+        <a href="#awareness-seeker" class="btn-secondary">Awareness Seeker</a>
+        <a href="#over-thinker" class="btn-secondary">Over Thinker</a>
+      </div>
+    </div>
+
+    <!-- RIGHT — Five avatar questions -->
+    <div style="position:relative;">
+      <div style="font-family:'DM Mono',monospace; font-size:0.72rem; color:var(--teal); letter-spacing:0.2em; text-transform:uppercase; margin-bottom:1.5rem; display:flex; align-items:center; gap:0.75rem;">
+        <span style="display:block; width:24px; height:1px; background:var(--teal);"></span>
+        Does Any Of This Sound Familiar?
+      </div>
+      <div style="background:var(--card); border:1px solid var(--border); border-left:3px solid var(--teal); padding:1.25rem 1.5rem; margin-bottom:1rem; clip-path:polygon(0 0,calc(100% - 8px) 0,100% 8px,100% 100%,0 100%);">
+        <div style="font-family:'DM Mono',monospace; font-size:0.65rem; color:var(--teal); letter-spacing:0.15em; text-transform:uppercase; margin-bottom:0.4rem;">Business Owner</div>
+        <p style="color:var(--white); font-size:0.95rem; line-height:1.6; font-weight:300;">Why is your business working hard and staying flat — and why can't you see what's blocking it from the inside?</p>
+      </div>
+      <div style="background:var(--card); border:1px solid var(--border); border-left:3px solid var(--purple-light); padding:1.25rem 1.5rem; margin-bottom:1rem; clip-path:polygon(0 0,calc(100% - 8px) 0,100% 8px,100% 100%,0 100%);">
+        <div style="font-family:'DM Mono',monospace; font-size:0.65rem; color:var(--purple-light); letter-spacing:0.15em; text-transform:uppercase; margin-bottom:0.4rem;">Ad Agency</div>
+        <p style="color:var(--white); font-size:0.95rem; line-height:1.6; font-weight:300;">Why is your best creative technically competent but not breaking through — and why does the brief never quite explain what's missing?</p>
+      </div>
+      <div style="background:var(--card); border:1px solid var(--border); border-left:3px solid var(--teal); padding:1.25rem 1.5rem; margin-bottom:1rem; clip-path:polygon(0 0,calc(100% - 8px) 0,100% 8px,100% 100%,0 100%);">
+        <div style="font-family:'DM Mono',monospace; font-size:0.65rem; color:var(--teal); letter-spacing:0.15em; text-transform:uppercase; margin-bottom:0.4rem;">Over Thinker</div>
+        <p style="color:var(--white); font-size:0.95rem; line-height:1.6; font-weight:300;">Why do you keep having the same argument with yourself — and why does knowing better never seem to make you do better?</p>
+      </div>
+      <div style="background:var(--card); border:1px solid var(--border); border-left:3px solid var(--purple-light); padding:1.25rem 1.5rem; margin-bottom:1rem; clip-path:polygon(0 0,calc(100% - 8px) 0,100% 8px,100% 100%,0 100%);">
+        <div style="font-family:'DM Mono',monospace; font-size:0.65rem; color:var(--purple-light); letter-spacing:0.15em; text-transform:uppercase; margin-bottom:0.4rem;">Entrepreneur / Startup</div>
+        <p style="color:var(--white); font-size:0.95rem; line-height:1.6; font-weight:300;">Why does knowing exactly what your business needs to do and actually doing it feel like two completely different things?</p>
+      </div>
+      <div style="background:var(--card); border:1px solid var(--border); border-left:3px solid var(--teal); padding:1.25rem 1.5rem; margin-bottom:0; clip-path:polygon(0 0,calc(100% - 8px) 0,100% 8px,100% 100%,0 100%);">
+        <div style="font-family:'DM Mono',monospace; font-size:0.65rem; color:var(--teal); letter-spacing:0.15em; text-transform:uppercase; margin-bottom:0.4rem;">Awareness Seeker</div>
+        <p style="color:var(--white); font-size:0.95rem; line-height:1.6; font-weight:300;">Why does the relief you find in seminars, books and practices always seem to fade — and why does the same pattern keep returning?</p>
+      </div>
+      <p style="font-family:'DM Mono',monospace; font-size:0.72rem; color:var(--gray); letter-spacing:0.08em; margin-top:1.5rem; font-style:italic;">The name creates distance. The distance is where the freedom lives.</p>
+    </div>
+
+  </div>
+</section>
+
+<!-- BUSINESS OWNER SECTION -->
+<section id="business-owner" style="background: var(--dark); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border);">
+  <div class="offer-grid">
+    <div class="offer-left">
+      <div class="section-tag">For Business Owners</div>
+      <h2 class="section-title">THE <span class="accent">REVENUE</span><br>GLITCH</h2>
+      <p class="section-body">
+        Most businesses don't have a marketing problem. They have a glitch problem — invisible structural patterns running underneath every decision, every promotion, every quarter that underperforms without an obvious reason.
+        <br><br>
+        The Blockbuster Syndrome hits retail. The Build It They Will Come Loop hits startups. The Superior Vendor Glitch hits professional services. The Numbers Blindness Loop hits manufacturers. The Corner Office Glitch hits leadership teams.
+        <br><br>
+        <strong>The machine doesn't care what industry you're in.</strong>
+        <br><br>
+        You don't have bad instincts. You have proximity blindness — you're too close to your own business to see the structural patterns running it. That's not incompetence. That's physics.
+      </p>
+
+      <!-- Books -->
+      <div style="margin-top:2rem;">
+        <div style="font-family:'DM Mono',monospace; font-size:0.72rem; color:var(--teal); letter-spacing:0.15em; text-transform:uppercase; margin-bottom:1rem;">The Books</div>
+        <div style="display:flex; gap:1.5rem; flex-wrap:wrap; align-items:flex-start; margin-bottom:1.5rem;">
+          <div>
+            <a href="https://www.amazon.com/stores/Kevin-Donovan/author/B0GZSGDFH4" target="_blank">
+              <img src="BusinessBookCover.png" alt="Glimpses vs Glitches for the Business Owner" loading="lazy" class="section-book-cover">
+            </a>
+            <p style="color:var(--white); font-size:0.85rem; font-weight:500; margin-bottom:0.2rem;">For the Business Owner</p>
+            <a href="https://www.amazon.com/stores/Kevin-Donovan/author/B0GZSGDFH4" target="_blank" style="color:var(--teal); text-decoration:none; font-family:'DM Mono',monospace; font-size:0.75rem; letter-spacing:0.08em;">Amazon → Paperback & Kindle</a>
+          </div>
+          <div>
+            <a href="https://www.amazon.com/stores/Kevin-Donovan/author/B0GZSGDFH4" target="_blank">
+              <img src="Glitch GlossaaryFront.png" alt="The Complete Glitch Glossary" loading="lazy" class="section-book-cover">
+            </a>
+            <p style="color:var(--white); font-size:0.85rem; font-weight:500; margin-bottom:0.2rem;">The Complete Glitch Glossary</p>
+            <a href="https://www.amazon.com/stores/Kevin-Donovan/author/B0GZSGDFH4" target="_blank" style="color:var(--teal); text-decoration:none; font-family:'DM Mono',monospace; font-size:0.75rem; letter-spacing:0.08em;">Amazon → Paperback & Kindle</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Free Download -->
+      <div style="margin-top:1rem;">
+        <div style="font-family:'DM Mono',monospace; font-size:0.72rem; color:var(--teal); letter-spacing:0.15em; text-transform:uppercase; margin-bottom:1rem;">Free Download</div>
+        <div style="display:flex; gap:1.5rem; align-items:flex-start; flex-wrap:wrap;">
+          <img src="glossary-cover.png" alt="Free Glitch Glossary Entry Set One" loading="lazy" style="width:120px; height:auto; box-shadow:0 0 20px rgba(0,212,200,0.2);">
+          <div>
+            <p style="color:var(--white); font-size:0.95rem; font-weight:500; margin-bottom:0.5rem;">The Glitch Glossary — Entry Set One</p>
+            <p style="color:var(--gray); font-size:0.9rem; line-height:1.7; margin-bottom:1rem;">Seven named programs. The ones running your business before you even know they're running. Free.</p>
+           
+            <a href="https://glitchaudit.co/downloads/the-glitch-glossary-entry-set-one.pdf" 
+   target="_blank" 
+   class="btn-primary" 
+   style="border:none; cursor:pointer; font-size:0.85rem; padding:0.75rem 1.5rem;">
+   Get the Free Glossary →
+</a>
+<p style="color:var(--gray); font-size:0.75rem; margin-top:0.5rem; font-style:italic;">Instant download. No signup required.</p></p>
+          </div>
+        </div>
+      </div>
+
+      <div style="margin-top:2rem;">
+        <a href="immersion.html" style="color:var(--teal); text-decoration:none; font-size:0.9rem;">Looking for a deeper engagement? →</a>
+      </div>
+    </div>
+
+    <div class="offer-right">
+      <div class="offer-card">
+        <div class="offer-card-title">Revenue Stability Session™</div>
+        <div class="offer-card-price">$1,500 · 90 Minutes</div>
+        <div class="offer-card-desc">
+          A surgical diagnostic for business owners who need clarity fast. Three to five structural revenue leaks identified. One live correction installed during the session. Three prioritized stabilizers you can implement within 14 days.
+          <br><br>
+          Not a rebrand. Not a 90-day commitment. Not a pile of theory. Clarity and immediate correction. That's it.
+        </div>
+        <ul class="offer-list">
+          <li>3–5 structural revenue leaks identified</li>
+          <li>One live correction installed during the session</li>
+          <li>3 prioritized stabilizers for the next 14 days</li>
+          <li>Immediate action steps — no fluff</li>
+        </ul>
+        <p style="font-family:'DM Mono',monospace; font-size:0.8rem; color:var(--purple-light); letter-spacing:0.08em; font-style:italic; margin-bottom:1.25rem;">The Stability Session fixes leaks.</p>
+        <a href="https://calendly.co/kevin-glitchaudit/revenue-stability-session" target="_blank" class="btn-primary">Book a Revenue Stability Session →</a>
+      </div>
+      <div class="offer-card">
+        <div class="offer-card-title">Revenue Architecture Blueprint™</div>
+        <div class="offer-card-price">$3,500 — $7,500 · 90 Days</div>
+        <div class="offer-card-desc">
+          For business owners ready to stop patching leaks and install permanent structure. Full revenue architecture across five layers — positioning clarity, offer and pricing restructure, conversion mechanics, retention engineering, and a 90-day campaign system that creates predictable rhythm instead of reactive chaos.
+        </div>
+        <ul class="offer-list">
+          <li>Occasion ownership & emotional positioning clarity</li>
+          <li>Offer, pricing & margin architecture</li>
+          <li>90-day campaign sequencing</li>
+          <li>Retention engineering & KPI framework</li>
+        </ul>
+        <p style="font-family:'DM Mono',monospace; font-size:0.8rem; color:var(--purple-light); letter-spacing:0.08em; font-style:italic; margin-bottom:1.25rem;">The Blueprint installs structure.</p>
+      </div>
+      <div class="offer-card">
+        <div class="offer-card-title">Weekend Workshop</div>
+        <div class="offer-card-price">Coming Soon · Join the List</div>
+        <div class="offer-card-desc">
+          A full weekend immersion for business owners ready to see the programs running their decisions — and install the corrections that actually hold. Friday evening through Sunday afternoon. Norfolk, Virginia and future locations.
+        </div>
+        <ul class="offer-list">
+          <li>Friday evening — the machine introduced</li>
+          <li>Saturday — the programs named and mapped</li>
+          <li>Sunday — corrections installed and taken home</li>
+        </ul>
+        <a href="#contact" class="btn-secondary" style="margin-top:0.5rem;">Notify Me When It Launches →</a>
+      </div>
+      <a href="#contact" class="btn-primary" style="margin-top:0.5rem;">Request a Revenue Glitch Session</a>
+    </div>
+  </div>
+</section>
+
+<!-- AWARENESS SEEKER SECTION -->
+<section id="awareness-seeker" style="background: var(--black); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border);">
+  <div class="offer-grid">
+    <div class="offer-left">
+      <div class="section-tag" style="color:var(--purple-light);">
+        <span style="display:block; width:24px; height:1px; background:var(--purple-light);"></span>
+        For The Awareness Seeker
+      </div>
+      <h2 class="section-title">THE <span class="accent-purple">GLIMPSE</span><br>YOU'VE BEEN<br>LOOKING FOR</h2>
+      <p class="section-body">
+        You've felt it. The moment after the argument when you wondered where that came from. The decision you almost made and then didn't — and felt the quiet relief of the almost. The morning when everything felt clean and possible before the noise came back.
+        <br><br>
+        Those weren't accidents. Those were Glimpses — the awareness that has always been underneath the machine surfacing briefly before the program started running again.
+        <br><br>
+        <strong>This is the framework that finally names what you've been seeing.</strong>
+      </p>
+
+      <!-- Books -->
+      <div style="margin-top:2rem;">
+        <div style="font-family:'DM Mono',monospace; font-size:0.72rem; color:var(--purple-light); letter-spacing:0.15em; text-transform:uppercase; margin-bottom:1rem;">The Books</div>
+        <div style="display:flex; gap:1.5rem; flex-wrap:wrap; align-items:flex-start; margin-bottom:1.5rem;">
+          <div>
+            <a href="https://www.amazon.com/stores/Kevin-Donovan/author/B0GZSGDFH4" target="_blank">
+              <img src="glimpses-cover.png" alt="Glimpses vs Glitches for the Awareness Seeker" loading="lazy" class="section-book-cover">
+            </a>
+            <p style="color:var(--white); font-size:0.85rem; font-weight:500; margin-bottom:0.2rem;">For the Awareness Seeker</p>
+            <a href="https://www.amazon.com/stores/Kevin-Donovan/author/B0GZSGDFH4" target="_blank" style="color:var(--purple-light); text-decoration:none; font-family:'DM Mono',monospace; font-size:0.75rem; letter-spacing:0.08em;">Amazon → Paperback & Kindle</a>
+          </div>
+          <div>
+            <a href="https://www.amazon.com/stores/Kevin-Donovan/author/B0GZSGDFH4" target="_blank">
+              <img src="glimpses-cover-workbook.png" alt="Glimpses vs Glitches for the Awareness Seeker Workbook" loading="lazy" class="section-book-cover">
+            </a>
+            <p style="color:var(--white); font-size:0.85rem; font-weight:500; margin-bottom:0.2rem;">The Companion Workbook</p>
+            <a href="https://www.amazon.com/stores/Kevin-Donovan/author/B0GZSGDFH4" target="_blank" style="color:var(--purple-light); text-decoration:none; font-family:'DM Mono',monospace; font-size:0.75rem; letter-spacing:0.08em;">Amazon → Paperback</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Free Download -->
+      <div style="margin-top:1rem;">
+        <div style="font-family:'DM Mono',monospace; font-size:0.72rem; color:var(--purple-light); letter-spacing:0.15em; text-transform:uppercase; margin-bottom:1rem;">Free Download</div>
+        <div style="display:flex; gap:1.5rem; align-items:flex-start; flex-wrap:wrap;">
+          <img src="AwarenessPDFCover.png" alt="The Awareness Seeker Field Guide" loading="lazy" style="width:120px; height:auto; box-shadow:0 0 20px rgba(123,94,167,0.3);">
+          <div>
+            <p style="color:var(--white); font-size:0.95rem; font-weight:500; margin-bottom:0.5rem;">The Awareness Seeker's Field Guide</p>
+            <p style="color:var(--gray); font-size:0.9rem; line-height:1.7; margin-bottom:1rem;">The key Glimpse moments from the book distilled into a free field guide. Not explanation. Recognition.</p>
+           
+            <a href="https://glitchaudit.co/downloads/the-awareness-seeker-field-guide.pdf" 
+   target="_blank" 
+   class="btn-primary" 
+   style="border:none; cursor:pointer; font-size:0.85rem; padding:0.75rem 1.5rem; background:var(--purple-light); color:var(--black);">
+   Get the Free Field Guide →
+</a>
+<p style="color:var(--gray); font-size:0.75rem; margin-top:0.5rem; font-style:italic;">Instant download. No signup required.</p></p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="offer-right">
+      <div class="offer-card" style="border-top:none;">
+        <div style="position:absolute; top:0; left:0; right:0; height:2px; background:linear-gradient(90deg, var(--purple-light), var(--purple));"></div>
+        <div class="offer-card-title">Personal One on One Sessions</div>
+        <div class="offer-card-price" style="color:var(--purple-light); font-size:1.1rem;">Contact for Pricing</div>
+        <div class="offer-card-desc">
+          For individuals ready to go deeper than a book can take them. A personal session built around your specific loops, your specific programs, your specific life.
+          <br><br>
+          Pricing is individual. If you are doing well and can pay a fair rate — we will agree on one. If you are genuinely stuck and struggling financially — that conversation is worth having too. The work matters more than the rate.
+        </div>
+        <ul class="offer-list">
+          <li>Your specific Mechanical Mind programs identified</li>
+          <li>The loops running your decisions named</li>
+          <li>The one question applied to your specific situation</li>
+          <li>A path forward that is yours — not generic</li>
+        </ul>
+        <a href="https://calendly.co/kevin-glitchaudit/revenue-stability-session" target="_blank" class="btn-primary" style="background:var(--purple-light); color:var(--black); margin-top:1rem;">Book a Personal Session →</a>
+      </div>
+      <div class="offer-card">
+        <div class="offer-card-title">Weekend Workshop</div>
+        <div class="offer-card-price" style="color:var(--purple-light); font-size:1.1rem;">Coming Soon · Join the List</div>
+        <div class="offer-card-desc">
+          Friday to Sunday. A room of people who recognize themselves in the framework. Arrive fully inside the machine. Leave with the awareness to step outside it — and the tools to do it again on your own.
+          <br><br>
+          Not a seminar. Not a motivation weekend. An experience.
+        </div>
+        <ul class="offer-list">
+          <li>Friday evening — the machine introduced</li>
+          <li>Saturday — the programs named and felt</li>
+          <li>Sunday — the Glimpse practiced and taken home</li>
+        </ul>
+        <a href="#contact" class="btn-secondary" style="border-color:var(--purple-light); color:var(--purple-light); margin-top:1rem;">Notify Me When It Launches →</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- OVER THINKER SECTION -->
+<section id="over-thinker" style="background: var(--dark); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border);">
+  <div class="offer-grid">
+    <div class="offer-left">
+      <div class="section-tag">For The Over Thinker</div>
+      <h2 class="section-title">YOU CAN'T<br>THINK YOUR<br>WAY <span class="accent">OUT.</span></h2>
+      <p class="section-body">
+        You already know this isn't working. The meditation. The journaling. The productivity systems. The morning routines that held for two weeks and then quietly stopped.
+        <br><br>
+        Here you are again. Same loop. Same 2am spiral. Same argument with yourself that never reaches a verdict.
+        <br><br>
+        This isn't a discipline problem. This isn't a character flaw. This is two million year old hardware running a program that has no off switch — until you can see it clearly enough to step outside it.
+        <br><br>
+        <strong>The thinker and the thought are not the same thing. One of them is you.</strong>
+      </p>
+
+      <!-- Books -->
+      <div style="margin-top:2rem;">
+        <div style="font-family:'DM Mono',monospace; font-size:0.72rem; color:var(--teal); letter-spacing:0.15em; text-transform:uppercase; margin-bottom:1rem;">The Books</div>
+        <div style="display:flex; gap:1.5rem; flex-wrap:wrap; align-items:flex-start; margin-bottom:1.5rem;">
+          <div>
+            <a href="https://www.amazon.com/stores/Kevin-Donovan/author/B0GZSGDFH4" target="_blank">
+              <img src="OverThinkerCover.png" alt="Glimpses vs Glitches for the Over Thinker" loading="lazy" class="section-book-cover">
+            </a>
+            <p style="color:var(--white); font-size:0.85rem; font-weight:500; margin-bottom:0.2rem;">For the Over Thinker</p>
+            <a href="https://www.amazon.com/stores/Kevin-Donovan/author/B0GZSGDFH4" target="_blank" style="color:var(--teal); text-decoration:none; font-family:'DM Mono',monospace; font-size:0.75rem; letter-spacing:0.08em;">Amazon → Paperback & Kindle</a>
+          </div>
+          <div>
+            <a href="https://www.amazon.com/stores/Kevin-Donovan/author/B0GZSGDFH4" target="_blank">
+              <img src="OverThinkerCoverWorkbook.jpg" alt="Glimpses vs Glitches for the Over Thinker Workbook" loading="lazy" class="section-book-cover">
+            </a>
+            <p style="color:var(--white); font-size:0.85rem; font-weight:500; margin-bottom:0.2rem;">The Companion Workbook</p>
+            <a href="https://www.amazon.com/stores/Kevin-Donovan/author/B0GZSGDFH4" target="_blank" style="color:var(--teal); text-decoration:none; font-family:'DM Mono',monospace; font-size:0.75rem; letter-spacing:0.08em;">Amazon → Paperback</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Free Download -->
+      <div style="margin-top:1rem;">
+        <div style="font-family:'DM Mono',monospace; font-size:0.72rem; color:var(--teal); letter-spacing:0.15em; text-transform:uppercase; margin-bottom:1rem;">Free Download</div>
+        <div style="display:flex; gap:1.5rem; align-items:flex-start; flex-wrap:wrap;">
+          <img src="OverThinkerCoverPDF.png" alt="Why You Can't Think Your Way Out PDF" loading="lazy" style="width:120px; height:auto; box-shadow:0 0 20px rgba(0,212,200,0.2);">
+          <div>
+            <p style="color:var(--white); font-size:0.95rem; font-weight:500; margin-bottom:0.5rem;">Why You Can't Think Your Way Out</p>
+            <p style="color:var(--gray); font-size:0.9rem; line-height:1.7; margin-bottom:1rem;">The guide for the Over Thinker who has tried everything. Names the mechanism underneath the loop — not just the symptom.</p>
+            
+            <a href="https://glitchaudit.co/downloads/why-you-cant-think-your-way-out.pdf" 
+   target="_blank" 
+   class="btn-primary" 
+   style="border:none; cursor:pointer; font-size:0.85rem; padding:0.75rem 1.5rem;">
+   Get the Free Guide →
+</a>
+<p style="color:var(--gray); font-size:0.75rem; margin-top:0.5rem; font-style:italic;">Instant download. No signup required.</p></p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="offer-right">
+      <div class="offer-card">
+        <div class="offer-card-title">Online Course</div>
+        <div class="offer-card-price">$197 · Self Paced</div>
+        <div class="offer-card-desc">
+          Awareness vs Thoughts — the complete online experience. Eight guided modules taking you from seeing the thought for the first time to living from the other side of it.
+          <br><br>
+          Includes the Over Thinker Workbook as a downloadable companion. Built for the person who wants to go deeper than the book on their own schedule.
+        </div>
+        <ul class="offer-list">
+          <li>Eight guided video modules</li>
+          <li>Downloadable workbook included</li>
+          <li>The Pilot Light identified and named</li>
+          <li>The loops mapped and stepped outside</li>
+          <li>Lifetime access</li>
+        </ul>
+        <p style="font-family:'DM Mono',monospace; font-size:0.8rem; color:var(--teal); letter-spacing:0.08em; font-style:italic; margin-bottom:1.25rem;">Currently in development · Join the early access list.</p>
+        <a href="#contact" class="btn-secondary">Notify Me When It Launches →</a>
+      </div>
+      <div class="offer-card">
+        <div class="offer-card-title">Personal One on One Sessions</div>
+        <div class="offer-card-price" style="font-size:1.1rem;">Contact for Pricing</div>
+        <div class="offer-card-desc">
+          For the Over Thinker ready to work through their specific loops with direct support. Pricing is individual and based on where you are — financially and otherwise. The work matters more than the rate.
+        </div>
+        <ul class="offer-list">
+          <li>Your specific loops named and mapped</li>
+          <li>The Pilot Light identified in your own experience</li>
+          <li>The one question applied to your situation</li>
+          <li>Direct support — not a program, a conversation</li>
+        </ul>
+        <a href="https://calendly.co/kevin-glitchaudit/revenue-stability-session" target="_blank" class="btn-primary" style="margin-top:1rem;">Book a Personal Session →</a>
+      </div>
+      <div class="offer-card">
+        <div class="offer-card-title">Weekend Workshop</div>
+        <div class="offer-card-price" style="font-size:1.1rem;">Coming Soon · Join the List</div>
+        <div class="offer-card-desc">
+          Friday to Sunday. Arrive as an Over Thinker. Leave with the awareness that the thinker and the thought were never the same thing — and the lived experience of what that actually feels like.
+          <br><br>
+          Not a seminar. Not a technique. An experience of the other side.
+        </div>
+        <ul class="offer-list">
+          <li>Friday evening — the loop named and felt</li>
+          <li>Saturday — the programs seen clearly</li>
+          <li>Sunday — the Glimpse practiced and taken home</li>
+        </ul>
+        <a href="#contact" class="btn-secondary" style="margin-top:1rem;">Notify Me When It Launches →</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- AGENCY SECTION -->
+<section id="agencies" style="background: var(--black); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border);">
+  <div class="offer-grid">
+    <div class="offer-left">
+      <div class="section-tag">For Ad Agencies</div>
+      <h2 class="section-title">THE <span class="accent">GLITCH</span><br>DIAGNOSTIC</h2>
+      <p class="section-body">
+        The same prehistoric survival programs that kept humans alive two million years ago are running inside every viewer who sees your creative. When your hooks accidentally trigger the wrong circuits — the status alarm, the tribal threat response, the verification loop — <strong>they scroll before your message lands.</strong>
+        <br><br>
+        A Glitch Audit identifies exactly where your creative is losing the biological battle — and how to fix it.
+      </p>
+      <ul class="offer-list" style="margin-top:2rem;">
+        <li>Full review of video hooks, narrative structure and CTA positioning</li>
+        <li>Identification of specific biological disengagement triggers</li>
+        <li>Written diagnostic with actionable fixes</li>
+        <li>Veteran Producer's perspective — 300+ national campaigns</li>
+      </ul>
+    </div>
+    <div class="offer-right">
+      <div class="offer-card">
+        <div class="offer-card-title">Campaign Diagnostic</div>
+        <div class="offer-card-price">$950 <span style="font-size:0.85rem; color:var(--gray); font-family:'DM Sans',sans-serif;">/ audit</span></div>
+        <div class="offer-card-desc">Full written audit of your video creative. Identify the glitches costing you engagement. Delivered within 5 business days. Ideal for mid-sized agencies — one decision maker, no committee required.</div>
+      </div>
+      <div class="offer-card">
+        <div class="offer-card-title">Creative Team Review</div>
+        <div class="offer-card-price">$2,500 — $3,500</div>
+        <div class="offer-card-desc">Full diagnostic plus live presentation to your creative team. Collaborative deep-dive into campaign strategy, hooks, and biological engagement architecture. For larger agencies and high-stakes campaigns.</div>
+      </div>
+      <div class="offer-card">
+        <div class="offer-card-title">On-Site Consulting</div>
+        <div class="offer-card-price">$1,500+ <span style="font-size:0.85rem; color:var(--gray); font-family:'DM Sans',sans-serif;">/ day</span></div>
+        <div class="offer-card-desc">Extended on-site engagement. Pre-production strategy, campaign auditing, and creative team training in the Mechanical Mind framework.</div>
+      </div>
+      <a href="#contact" class="btn-primary" style="margin-top:0.5rem;">Request an Audit</a>
+    </div>
+  </div>
+</section>
+
+<!-- AI GOVERNANCE SECTION -->
+<section id="ai-governance" style="background: var(--dark); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border);">
+  <div class="offer-grid">
+    <div class="offer-left">
+      <div class="section-tag">Glitch Audit AI</div>
+      <h2 class="section-title">THE <span class="accent">AI</span><br>REALITY<br>CHECK</h2>
+      <p class="section-body">
+        The AI conversation is polarized, loud and increasingly confusing.
+        <br><br>
+        Most organizations aren't behind on AI governance because they're careless. They're moving fast and their processes haven't caught up yet.
+        <br><br>
+        Before you need lawyers. Before you need compliance frameworks. Before you need technical audits and regulatory mapping —
+        <br><br>
+        <strong>You need to understand where you actually are.</strong>
+        <br><br>
+        What AI tools are being used and how. What decisions are being made with AI input that leadership doesn't fully see. Where the gaps are between what the organization thinks is happening and what's actually happening in the rooms where AI is being used every day.
+        <br><br>
+        Glitch Audit AI cuts through the noise. Not with opinions about what AI is or isn't. With a clear honest picture of what's actually happening in your organization right now — and what to do about it.
+        <br><br>
+        <strong style="color:var(--white);">The most expensive risks in AI adoption aren't legal or technical. They're behavioral.</strong>
+        <br><br>
+        The leadership team that approved an AI strategy without fully understanding what it does. The employees who perform AI adoption in meetings and work around it everywhere else. The organization that put AI on top of broken processes and is waiting for results that aren't coming.
+        <br><br>
+        These risks don't show up in compliance audits. They show up in the gap between the projection and the result.
+        <br><br>
+        Glitch Audit AI finds that gap before it becomes expensive.
+      </p>
+      <div style="margin-top:2rem;">
+        <a href="#contact" style="color:var(--teal); text-decoration:none; font-size:0.9rem;">Ready to understand your AI reality? →</a>
+      </div>
+    </div>
+
+    <div class="offer-right">
+      <div class="offer-card">
+        <div class="offer-card-title">The AI Reality Check</div>
+        <div class="offer-card-price">$1,500 · 90 Minutes</div>
+        <div class="offer-card-desc">
+          A single session with your key decision maker or small leadership group. Current AI tool inventory. Decision making exposure. Policy gap identification. Priority risk snapshot. Three most important things to address and in what order.
+          <br><br>
+          Delivered as a written summary with clear action priorities. The starting conversation — and almost always the beginning of a longer relationship.
+        </div>
+        <ul class="offer-list">
+          <li>Current AI tool inventory across the organization</li>
+          <li>Decision making exposure identified</li>
+          <li>Policy gap assessment</li>
+          <li>Priority risk snapshot</li>
+          <li>Written action summary delivered</li>
+        </ul>
+        <p style="font-family:'DM Mono',monospace; font-size:0.8rem; color:var(--purple-light); letter-spacing:0.08em; font-style:italic; margin-bottom:1.25rem;">Clarity before compliance.</p>
+        <a href="#contact" class="btn-primary">Book an AI Reality Check →</a>
+      </div>
+
+      <div class="offer-card">
+        <div class="offer-card-title">The AI Adoption Audit</div>
+        <div class="offer-card-price">$5,000 — $10,000</div>
+        <div class="offer-card-desc">
+          A structured assessment over two to three weeks. Interviews with leadership and key stakeholders. Review of existing AI policies and documentation. Identification of the gap between stated AI strategy and actual organizational behavior.
+          <br><br>
+          Delivered as a comprehensive report with named behavioral risks, priority action roadmap and specialist referrals where needed.
+        </div>
+        <ul class="offer-list">
+          <li>Full organizational AI assessment</li>
+          <li>Gap analysis — strategy vs actual practice</li>
+          <li>Named behavioral risks specific to your organization</li>
+          <li>Priority action roadmap</li>
+          <li>Specialist referrals — legal, technical, HR as needed</li>
+        </ul>
+        <p style="font-family:'DM Mono',monospace; font-size:0.8rem; color:var(--purple-light); letter-spacing:0.08em; font-style:italic; margin-bottom:1.25rem;">The full picture before the pressure arrives.</p>
+      </div>
+
+      <div class="offer-card">
+        <div class="offer-card-title">AI Governance Foundation Program</div>
+        <div class="offer-card-price">$15,000 — $25,000 · 90 Days</div>
+        <div class="offer-card-desc">
+          From assessment through to a functioning AI governance foundation. Full adoption audit plus policy development support, leadership alignment sessions, employee AI readiness training and ongoing advisory through the 90 days.
+          <br><br>
+          Not compliance documentation. A working foundation built on what's actually happening in your organization.
+        </div>
+        <ul class="offer-list">
+          <li>Full adoption audit included</li>
+          <li>AI policy development support</li>
+          <li>Leadership alignment sessions</li>
+          <li>Employee AI readiness training</li>
+          <li>Monthly advisory check ins through 90 days</li>
+        </ul>
+        <p style="font-family:'DM Mono',monospace; font-size:0.8rem; color:var(--purple-light); letter-spacing:0.08em; font-style:italic; margin-bottom:1.25rem;">The operating system underneath compliance.</p>
+      </div>
+
+      <div class="offer-card">
+        <div class="offer-card-title">Fractional AI Governance Advisor</div>
+        <div class="offer-card-price">$2,500 — $5,000 · Monthly</div>
+        <div class="offer-card-desc">
+          An ongoing trusted advisor relationship as the regulatory environment develops and your AI adoption matures. Available for leadership questions, policy review, incident response guidance and specialist referrals as needed.
+          <br><br>
+          Not another vendor. The person in your corner who helps you see clearly as the landscape keeps changing.
+        </div>
+        <ul class="offer-list">
+          <li>Monthly advisory availability</li>
+          <li>Policy review as regulations develop</li>
+          <li>Incident response guidance</li>
+          <li>Specialist referral network</li>
+          <li>Leadership question support</li>
+        </ul>
+        <p style="font-family:'DM Mono',monospace; font-size:0.8rem; color:var(--purple-light); letter-spacing:0.08em; font-style:italic; margin-bottom:1.25rem;">The trusted advisor as AI matures.</p>
+      </div>
+
+      <a href="#contact" class="btn-primary" style="margin-top:0.5rem;">Start the AI Conversation →</a>
+    </div>
+  </div>
+</section>
+
+<!-- SPEAKING -->
+<section id="speaking" style="padding: 6rem 4rem; background: var(--dark); border-top: 1px solid var(--border);">
+  <div style="max-width:1100px; margin:0 auto;">
+    <div class="section-tag">Speaking & Podcasts</div>
+    <h2 class="section-title">THE <span class="accent-purple">MECHANICAL</span><br>MIND ON STAGE</h2>
+    <p class="section-body">
+      Available for keynotes, podcast interviews, panels, and agency offsites. Kevin brings 25 years of front-row access to human biological programming — and the framework that finally names what's been running all along.
+    </p>
+    <div class="speaking-grid">
+      <div class="speaking-card">
+        <div class="speaking-card-icon">◈</div>
+        <div class="speaking-card-title">Keynote</div>
+        <div class="speaking-card-desc">The Mechanical Mind — why your audience's prehistoric hardware is the most important creative brief you've never read. For agency summits, marketing conferences, and brand leadership teams.</div>
+      </div>
+      <div class="speaking-card">
+        <div class="speaking-card-icon">◉</div>
+        <div class="speaking-card-title">Podcast Guest</div>
+        <div class="speaking-card-desc">Human OS 1.0 and the biology of consumer behavior. Why the status alarm, the tribal threat response, and the verification loop are running inside every viewer — and what to do about it.</div>
+      </div>
+      <div class="speaking-card">
+        <div class="speaking-card-icon">◎</div>
+        <div class="speaking-card-title">Agency Offsite</div>
+        <div class="speaking-card-desc">Half-day or full-day workshop. Train your creative team to see the biological programs their campaigns are triggering — and build creative that works with human hardwiring instead of against it.</div>
+      </div>
+    </div>
+    <div style="margin-top:2.5rem;">
+      <a href="#contact" class="btn-secondary">Book Kevin to Speak</a>
+    </div>
+  </div>
+</section>
+
+<!-- GLITCH LIBRARY — Complete 37 Entry Grid -->
+<!-- Replace the existing id="glitch-posts" section in index.html with this -->
+
+<section id="glitch-posts" style="padding: 6rem 4rem; background: var(--black); border-top: 1px solid var(--border);">
+  <div style="max-width:1100px; margin:0 auto;">
+    <div class="section-tag">The Glitch Library</div>
+    <h2 class="section-title">THE <span class="accent">NAMED</span><br>PROGRAMS</h2>
+    <p class="section-body" style="margin-bottom:1rem;">
+      37 named programs running most business decisions without permission. Once you can name what's running — it loses most of its authority over you.
+      <strong>Start here first →</strong>
+    </p>
+    <a href="the-name-is-just-the-door.html" style="display:inline-flex; align-items:center; gap:0.5rem; font-family:'DM Mono',monospace; font-size:0.8rem; color:var(--teal); letter-spacing:0.1em; text-transform:uppercase; text-decoration:none; margin-bottom:3rem; border-bottom:1px solid var(--border); padding-bottom:1rem; width:100%;">
+      ⟶ Read This First: The Name Is Just The Door — the most important thing to understand before reading any entry
+    </a>
+
+    <!-- ENTRY SET 01 — THE FOUNDATION GLITCHES -->
+    <div style="margin-bottom:3rem;">
+      <div style="font-family:'DM Mono',monospace; font-size:0.72rem; color:var(--teal); letter-spacing:0.2em; text-transform:uppercase; margin-bottom:1.25rem; display:flex; align-items:center; gap:0.75rem; border-bottom:1px solid var(--border); padding-bottom:0.75rem;">
+        <span style="display:block; width:24px; height:1px; background:var(--teal);"></span>
+        Entry Set 01 — The Foundation Glitches
+      </div>
+      <div style="display:grid; grid-template-columns:repeat(3,1fr); gap:1.25rem;">
+
+        <a href="blockbuster-syndrome.html" style="background:var(--card); border:1px solid var(--border); padding:1.5rem; text-decoration:none; transition:all 0.2s; clip-path:polygon(0 0,calc(100% - 10px) 0,100% 10px,100% 100%,10px 100%,0 calc(100% - 10px)); display:block;" onmouseover="this.style.borderColor='rgba(0,212,200,0.4)'" onmouseout="this.style.borderColor='rgba(0, 212, 200, 0.15)'">
+          <div style="font-family:'DM Mono',monospace; font-size:0.6rem; color:var(--teal); letter-spacing:0.12em; text-transform:uppercase; margin-bottom:0.4rem;">Survival</div>
+          <div style="font-family:'Bebas Neue',sans-serif; font-size:1rem; letter-spacing:0.05em; color:var(--white);">The Blockbuster Syndrome</div>
+        </a>
+
+        <a href="build-it-they-will-come.html" style="background:var(--card); border:1px solid var(--border); padding:1.5rem; text-decoration:none; transition:all 0.2s; clip-path:polygon(0 0,calc(100% - 10px) 0,100% 10px,100% 100%,10px 100%,0 calc(100% - 10px)); display:block;" onmouseover="this.style.borderColor='rgba(0,212,200,0.4)'" onmouseout="this.style.borderColor='rgba(0, 212, 200, 0.15)'">
+          <div style="font-family:'DM Mono',monospace; font-size:0.6rem; color:var(--teal); letter-spacing:0.12em; text-transform:uppercase; margin-bottom:0.4rem;">Legacy</div>
+          <div style="font-family:'Bebas Neue',sans-serif; font-size:1rem; letter-spacing:0.05em; color:var(--white);">The Build It They Will Come Loop</div>
+        </a>
+
+        <a href="superior-vendor-glitch.html" style="background:var(--card); border:1px solid var(--border); padding:1.5rem; text-decoration:none; transition:all 0.2s; clip-path:polygon(0 0,calc(100% - 10px) 0,100% 10px,100% 100%,10px 100%,0 calc(100% - 10px)); display:block;" onmouseover="this.style.borderColor='rgba(0,212,200,0.4)'" onmouseout="this.style.borderColor='rgba(0, 212, 200, 0.15)'">
+          <div style="font-family:'DM Mono',monospace; font-size:0.6rem; color:var(--teal); letter-spacing:0.12em; text-transform:uppercase; margin-bottom:0.4rem;">Tribal Belonging</div>
+          <div style="font-family:'Bebas Neue',sans-serif; font-size:1rem; letter-spacing:0.05em; color:var(--white);">The Superior Vendor Glitch</div>
+        </a>
+
+        <a href="numbers-blindness-loop.html" style="background:var(--card); border:1px solid var(--border); padding:1.5rem; text-decoration:none; transition:all 0.2s; clip-path:polygon(0 0,calc(100% - 10px) 0,100% 10px,100% 100%,10px 100%,0 calc(100% - 10px)); display:block;" onmouseover="this.style.borderColor='rgba(0,212,200,0.4)'" onmouseout="this.style.borderColor='rgba(0, 212, 200, 0.15)'">
+          <div style="font-family:'DM Mono',monospace; font-size:0.6rem; color:var(--teal); letter-spacing:0.12em; text-transform:uppercase; margin-bottom:0.4rem;">Legacy</div>
+          <div style="font-family:'Bebas Neue',sans-serif; font-size:1rem; letter-spacing:0.05em; color:var(--white);">The Numbers Blindness Loop</div>
+        </a>
+
+        <a href="corner-office-glitch.html" style="background:var(--card); border:1px solid var(--border); padding:1.5rem; text-decoration:none; transition:all 0.2s; clip-path:polygon(0 0,calc(100% - 10px) 0,100% 10px,100% 100%,10px 100%,0 calc(100% - 10px)); display:block;" onmouseover="this.style.borderColor='rgba(0,212,200,0.4)'" onmouseout="this.style.borderColor='rgba(0, 212, 200, 0.15)'">
+          <div style="font-family:'DM Mono',monospace; font-size:0.6rem; color:var(--teal); letter-spacing:0.12em; text-transform:uppercase; margin-bottom:0.4rem;">Hierarchy</div>
+          <div style="font-family:'Bebas Neue',sans-serif; font-size:1rem; letter-spacing:0.05em; color:var(--white);">The Corner Office Glitch</div>
+        </a>
+
+        <a href="tribal-billboard-exploit.html" style="background:var(--card); border:1px solid var(--border); padding:1.5rem; text-decoration:none; transition:all 0.2s; clip-path:polygon(0 0,calc(100% - 10px) 0,100% 10px,100% 100%,10px 100%,0 calc(100% - 10px)); display:block;" onmouseover="this.style.borderColor='rgba(0,212,200,0.4)'" onmouseout="this.style.borderColor='rgba(0, 212, 200, 0.15)'">
+          <div style="font-family:'DM Mono',monospace; font-size:0.6rem; color:var(--teal); letter-spacing:0.12em; text-transform:uppercase; margin-bottom:0.4rem;">Tribal Belonging</div>
+          <div style="font-family:'Bebas Neue',sans-serif; font-size:1rem; letter-spacing:0.05em; color:var(--white);">The Tribal Billboard Exploit</div>
+        </a>
+
+      </div>
+    </div>
+
+    <!-- ENTRY SET 02 — THE CUSTOMER EXPERIENCE GLITCHES -->
+    <div style="margin-bottom:3rem;">
+      <div style="font-family:'DM Mono',monospace; font-size:0.72rem; color:var(--purple-light); letter-spacing:0.2em; text-transform:uppercase; margin-bottom:1.25rem; display:flex; align-items:center; gap:0.75rem; border-bottom:1px solid var(--border); padding-bottom:0.75rem;">
+        <span style="display:block; width:24px; height:1px; background:var(--purple-light);"></span>
+        Entry Set 02 — The Customer Experience Glitches
+      </div>
+      <div style="display:grid; grid-template-columns:repeat(3,1fr); gap:1.25rem;">
+
+        <a href="cut-and-paste-empathy.html" style="background:var(--card); border:1px solid var(--border); padding:1.5rem; text-decoration:none; transition:all 0.2s; clip-path:polygon(0 0,calc(100% - 10px) 0,100% 10px,100% 100%,10px 100%,0 calc(100% - 10px)); display:block;" onmouseover="this.style.borderColor='rgba(155,126,200,0.4)'" onmouseout="this.style.borderColor='rgba(0, 212, 200, 0.15)'">
+          <div style="font-family:'DM Mono',monospace; font-size:0.6rem; color:var(--purple-light); letter-spacing:0.12em; text-transform:uppercase; margin-bottom:0.4rem;">Tribal Belonging</div>
+          <div style="font-family:'Bebas Neue',sans-serif; font-size:1rem; letter-spacing:0.05em; color:var(--white);">The Cut and Paste Empathy Glitch</div>
+        </a>
+
+        <a href="bait-and-switch-loop.html" style="background:var(--card); border:1px solid var(--border); padding:1.5rem; text-decoration:none; transition:all 0.2s; clip-path:polygon(0 0,calc(100% - 10px) 0,100% 10px,100% 100%,10px 100%,0 calc(100% - 10px)); display:block;" onmouseover="this.style.borderColor='rgba(155,126,200,0.4)'" onmouseout="this.style.borderColor='rgba(0, 212, 200, 0.15)'">
+          <div style="font-family:'DM Mono',monospace; font-size:0.6rem; color:var(--purple-light); letter-spacing:0.12em; text-transform:uppercase; margin-bottom:0.4rem;">Scarcity</div>
+          <div style="font-family:'Bebas Neue',sans-serif; font-size:1rem; letter-spacing:0.05em; color:var(--white);">The Bait and Switch Loop</div>
+        </a>
+
+        <a href="slogan-without-soul.html" style="background:var(--card); border:1px solid var(--border); padding:1.5rem; text-decoration:none; transition:all 0.2s; clip-path:polygon(0 0,calc(100% - 10px) 0,100% 10px,100% 100%,10px 100%,0 calc(100% - 10px)); display:block;" onmouseover="this.style.borderColor='rgba(155,126,200,0.4)'" onmouseout="this.style.borderColor='rgba(0, 212, 200, 0.15)'">
+          <div style="font-family:'DM Mono',monospace; font-size:0.6rem; color:var(--purple-light); letter-spacing:0.12em; text-transform:uppercase; margin-bottom:0.4rem;">Tribal Belonging</div>
+          <div style="font-family:'Bebas Neue',sans-serif; font-size:1rem; letter-spacing:0.05em; color:var(--white);">The Slogan Without Soul</div>
+        </a>
+
+        <a href="kroger-family-effect.html" style="background:var(--card); border:1px solid var(--border); padding:1.5rem; text-decoration:none; transition:all 0.2s; clip-path:polygon(0 0,calc(100% - 10px) 0,100% 10px,100% 100%,10px 100%,0 calc(100% - 10px)); display:block;" onmouseover="this.style.borderColor='rgba(155,126,200,0.4)'" onmouseout="this.style.borderColor='rgba(0, 212, 200, 0.15)'">
+          <div style="font-family:'DM Mono',monospace; font-size:0.6rem; color:var(--purple-light); letter-spacing:0.12em; text-transform:uppercase; margin-bottom:0.4rem;">Tribal Belonging</div>
+          <div style="font-family:'Bebas Neue',sans-serif; font-size:1rem; letter-spacing:0.05em; color:var(--white);">The Kroger Family Effect</div>
+        </a>
+
+        <a href="kiosk-dehumanization.html" style="background:var(--card); border:1px solid var(--border); padding:1.5rem; text-decoration:none; transition:all 0.2s; clip-path:polygon(0 0,calc(100% - 10px) 0,100% 10px,100% 100%,10px 100%,0 calc(100% - 10px)); display:block;" onmouseover="this.style.borderColor='rgba(155,126,200,0.4)'" onmouseout="this.style.borderColor='rgba(0, 212, 200, 0.15)'">
+          <div style="font-family:'DM Mono',monospace; font-size:0.6rem; color:var(--purple-light); letter-spacing:0.12em; text-transform:uppercase; margin-bottom:0.4rem;">Tribal Belonging</div>
+          <div style="font-family:'Bebas Neue',sans-serif; font-size:1rem; letter-spacing:0.05em; color:var(--white);">The Kiosk Dehumanization Glitch</div>
+        </a>
+
+        <a href="cannibal-contract.html" style="background:var(--card); border:1px solid var(--border); padding:1.5rem; text-decoration:none; transition:all 0.2s; clip-path:polygon(0 0,calc(100% - 10px) 0,100% 10px,100% 100%,10px 100%,0 calc(100% - 10px)); display:block;" onmouseover="this.style.borderColor='rgba(155,126,200,0.4)'" onmouseout="this.style.borderColor='rgba(0, 212, 200, 0.15)'">
+          <div style="font-family:'DM Mono',monospace; font-size:0.6rem; color:var(--purple-light); letter-spacing:0.12em; text-transform:uppercase; margin-bottom:0.4rem;">Tribal Belonging</div>
+          <div style="font-family:'Bebas Neue',sans-serif; font-size:1rem; letter-spacing:0.05em; color:var(--white);">The Cannibal Contract</div>
+        </a>
+
+        <a href="bottomless-trap.html" style="background:var(--card); border:1px solid var(--border); padding:1.5rem; text-decoration:none; transition:all 0.2s; clip-path:polygon(0 0,calc(100% - 10px) 0,100% 10px,100% 100%,10px 100%,0 calc(100% - 10px)); display:block;" onmouseover="this.style.borderColor='rgba(155,126,200,0.4)'" onmouseout="this.style.borderColor='rgba(0, 212, 200, 0.15)'">
+          <div style="font-family:'DM Mono',monospace; font-size:0.6rem; color:var(--purple-light); letter-spacing:0.12em; text-transform:uppercase; margin-bottom:0.4rem;">Scarcity</div>
+          <div style="font-family:'Bebas Neue',sans-serif; font-size:1rem; letter-spacing:0.05em; color:var(--white);">The Bottomless Trap</div>
+        </a>
+
+      </div>
+    </div>
+
+    <!-- ENTRY SET 03 — THE MONEY GLITCHES -->
+    <div style="margin-bottom:3rem;">
+      <div style="font-family:'DM Mono',monospace; font-size:0.72rem; color:var(--teal); letter-spacing:0.2em; text-transform:uppercase; margin-bottom:1.25rem; display:flex; align-items:center; gap:0.75rem; border-bottom:1px solid var(--border); padding-bottom:0.75rem;">
+        <span style="display:block; width:24px; height:1px; background:var(--teal);"></span>
+        Entry Set 03 — The Money Glitches
+      </div>
+      <div style="display:grid; grid-template-columns:repeat(3,1fr); gap:1.25rem;">
+
+        <a href="revenue-vanity-trap.html" style="background:var(--card); border:1px solid var(--border); padding:1.5rem; text-decoration:none; transition:all 0.2s; clip-path:polygon(0 0,calc(100% - 10px) 0,100% 10px,100% 100%,10px 100%,0 calc(100% - 10px)); display:block;" onmouseover="this.style.borderColor='rgba(0,212,200,0.4)'" onmouseout="this.style.borderColor='rgba(0, 212, 200, 0.15)'">
+          <div style="font-family:'DM Mono',monospace; font-size:0.6rem; color:var(--teal); letter-spacing:0.12em; text-transform:uppercase; margin-bottom:0.4rem;">Scarcity</div>
+          <div style="font-family:'Bebas Neue',sans-serif; font-size:1rem; letter-spacing:0.05em; color:var(--white);">The Revenue Vanity Trap</div>
+        </a>
+
+        <a href="price-basement-glitch.html" style="background:var(--card); border:1px solid var(--border); padding:1.5rem; text-decoration:none; transition:all 0.2s; clip-path:polygon(0 0,calc(100% - 10px) 0,100% 10px,100% 100%,10px 100%,0 calc(100% - 10px)); display:block;" onmouseover="this.style.borderColor='rgba(0,212,200,0.4)'" onmouseout="this.style.borderColor='rgba(0, 212, 200, 0.15)'">
+          <div style="font-family:'DM Mono',monospace; font-size:0.6rem; color:var(--teal); letter-spacing:0.12em; text-transform:uppercase; margin-bottom:0.4rem;">Scarcity</div>
+          <div style="font-family:'Bebas Neue',sans-serif; font-size:1rem; letter-spacing:0.05em; color:var(--white);">The Price Basement Glitch</div>
+        </a>
+
+        <a href="incentive-flip.html" style="background:var(--card); border:1px solid var(--border); padding:1.5rem; text-decoration:none; transition:all 0.2s; clip-path:polygon(0 0,calc(100% - 10px) 0,100% 10px,100% 100%,10px 100%,0 calc(100% - 10px)); display:block;" onmouseover="this.style.borderColor='rgba(0,212,200,0.4)'" onmouseout="this.style.borderColor='rgba(0, 212, 200, 0.15)'">
+          <div style="font-family:'DM Mono',monospace; font-size:0.6rem; color:var(--teal); letter-spacing:0.12em; text-transform:uppercase; margin-bottom:0.4rem;">Scarcity</div>
+          <div style="font-family:'Bebas Neue',sans-serif; font-size:1rem; letter-spacing:0.05em; color:var(--white);">The Incentive Flip</div>
+        </a>
+
+        <a href="fat-is-the-flavor.html" style="background:var(--card); border:1px solid var(--border); padding:1.5rem; text-decoration:none; transition:all 0.2s; clip-path:polygon(0 0,calc(100% - 10px) 0,100% 10px,100% 100%,10px 100%,0 calc(100% - 10px)); display:block;" onmouseover="this.style.borderColor='rgba(0,212,200,0.4)'" onmouseout="this.style.borderColor='rgba(0, 212, 200, 0.15)'">
+          <div style="font-family:'DM Mono',monospace; font-size:0.6rem; color:var(--teal); letter-spacing:0.12em; text-transform:uppercase; margin-bottom:0.4rem;">Scarcity</div>
+          <div style="font-family:'Bebas Neue',sans-serif; font-size:1rem; letter-spacing:0.05em; color:var(--white);">The Fat Is the Flavor</div>
+        </a>
+
+        <a href="race-to-the-bottom.html" style="background:var(--card); border:1px solid var(--border); padding:1.5rem; text-decoration:none; transition:all 0.2s; clip-path:polygon(0 0,calc(100% - 10px) 0,100% 10px,100% 100%,10px 100%,0 calc(100% - 10px)); display:block;" onmouseover="this.style.borderColor='rgba(0,212,200,0.4)'" onmouseout="this.style.borderColor='rgba(0, 212, 200, 0.15)'">
+          <div style="font-family:'DM Mono',monospace; font-size:0.6rem; color:var(--teal); letter-spacing:0.12em; text-transform:uppercase; margin-bottom:0.4rem;">Scarcity</div>
+          <div style="font-family:'Bebas Neue',sans-serif; font-size:1rem; letter-spacing:0.05em; color:var(--white);">The Race to the Bottom Isolation</div>
+        </a>
+
+        <a href="cheap-strangler.html" style="background:var(--card); border:1px solid var(--border); padding:1.5rem; text-decoration:none; transition:all 0.2s; clip-path:polygon(0 0,calc(100% - 10px) 0,100% 10px,100% 100%,10px 100%,0 calc(100% - 10px)); display:block;" onmouseover="this.style.borderColor='rgba(0,212,200,0.4)'" onmouseout="this.style.borderColor='rgba(0, 212, 200, 0.15)'">
+          <div style="font-family:'DM Mono',monospace; font-size:0.6rem; color:var(--teal); letter-spacing:0.12em; text-transform:uppercase; margin-bottom:0.4rem;">Scarcity</div>
+          <div style="font-family:'Bebas Neue',sans-serif; font-size:1rem; letter-spacing:0.05em; color:var(--white);">The Cheap Strangler</div>
+        </a>
+
+        <a href="freemium-trap.html" style="background:var(--card); border:1px solid var(--border); padding:1.5rem; text-decoration:none; transition:all 0.2s; clip-path:polygon(0 0,calc(100% - 10px) 0,100% 10px,100% 100%,10px 100%,0 calc(100% - 10px)); display:block;" onmouseover="this.style.borderColor='rgba(0,212,200,0.4)'" onmouseout="this.style.borderColor='rgba(0, 212, 200, 0.15)'">
+          <div style="font-family:'DM Mono',monospace; font-size:0.6rem; color:var(--teal); letter-spacing:0.12em; text-transform:uppercase; margin-bottom:0.4rem;">Scarcity</div>
+          <div style="font-family:'Bebas Neue',sans-serif; font-size:1rem; letter-spacing:0.05em; color:var(--white);">The Freemium Trap</div>
+        </a>
+
+      </div>
+    </div>
+
+    <!-- ENTRY SET 04 — THE STATUS GLITCHES -->
+    <div style="margin-bottom:3rem;">
+      <div style="font-family:'DM Mono',monospace; font-size:0.72rem; color:var(--purple-light); letter-spacing:0.2em; text-transform:uppercase; margin-bottom:1.25rem; display:flex; align-items:center; gap:0.75rem; border-bottom:1px solid var(--border); padding-bottom:0.75rem;">
+        <span style="display:block; width:24px; height:1px; background:var(--purple-light);"></span>
+        Entry Set 04 — The Status Glitches
+      </div>
+      <div style="display:grid; grid-template-columns:repeat(3,1fr); gap:1.25rem;">
+
+        <a href="smallest-power-glitch.html" style="background:var(--card); border:1px solid var(--border); padding:1.5rem; text-decoration:none; transition:all 0.2s; clip-path:polygon(0 0,calc(100% - 10px) 0,100% 10px,100% 100%,10px 100%,0 calc(100% - 10px)); display:block;" onmouseover="this.style.borderColor='rgba(155,126,200,0.4)'" onmouseout="this.style.borderColor='rgba(0, 212, 200, 0.15)'">
+          <div style="font-family:'DM Mono',monospace; font-size:0.6rem; color:var(--purple-light); letter-spacing:0.12em; text-transform:uppercase; margin-bottom:0.4rem;">Hierarchy</div>
+          <div style="font-family:'Bebas Neue',sans-serif; font-size:1rem; letter-spacing:0.05em; color:var(--white);">The Smallest Power Glitch</div>
+        </a>
+
+        <a href="tribal-hierarchy-sabotage.html" style="background:var(--card); border:1px solid var(--border); padding:1.5rem; text-decoration:none; transition:all 0.2s; clip-path:polygon(0 0,calc(100% - 10px) 0,100% 10px,100% 100%,10px 100%,0 calc(100% - 10px)); display:block;" onmouseover="this.style.borderColor='rgba(155,126,200,0.4)'" onmouseout="this.style.borderColor='rgba(0, 212, 200, 0.15)'">
+          <div style="font-family:'DM Mono',monospace; font-size:0.6rem; color:var(--purple-light); letter-spacing:0.12em; text-transform:uppercase; margin-bottom:0.4rem;">Hierarchy</div>
+          <div style="font-family:'Bebas Neue',sans-serif; font-size:1rem; letter-spacing:0.05em; color:var(--white);">The Tribal Hierarchy Sabotage</div>
+        </a>
+
+        <a href="meritocracy-myth.html" style="background:var(--card); border:1px solid var(--border); padding:1.5rem; text-decoration:none; transition:all 0.2s; clip-path:polygon(0 0,calc(100% - 10px) 0,100% 10px,100% 100%,10px 100%,0 calc(100% - 10px)); display:block;" onmouseover="this.style.borderColor='rgba(155,126,200,0.4)'" onmouseout="this.style.borderColor='rgba(0, 212, 200, 0.15)'">
+          <div style="font-family:'DM Mono',monospace; font-size:0.6rem; color:var(--purple-light); letter-spacing:0.12em; text-transform:uppercase; margin-bottom:0.4rem;">Hierarchy</div>
+          <div style="font-family:'Bebas Neue',sans-serif; font-size:1rem; letter-spacing:0.05em; color:var(--white);">The Meritocracy Myth</div>
+        </a>
+
+        <a href="chosen-confusion.html" style="background:var(--card); border:1px solid var(--border); padding:1.5rem; text-decoration:none; transition:all 0.2s; clip-path:polygon(0 0,calc(100% - 10px) 0,100% 10px,100% 100%,10px 100%,0 calc(100% - 10px)); display:block;" onmouseover="this.style.borderColor='rgba(155,126,200,0.4)'" onmouseout="this.style.borderColor='rgba(0, 212, 200, 0.15)'">
+          <div style="font-family:'DM Mono',monospace; font-size:0.6rem; color:var(--purple-light); letter-spacing:0.12em; text-transform:uppercase; margin-bottom:0.4rem;">Hierarchy</div>
+          <div style="font-family:'Bebas Neue',sans-serif; font-size:1rem; letter-spacing:0.05em; color:var(--white);">The Chosen Confusion</div>
+        </a>
+
+        <a href="tribal-compass.html" style="background:var(--card); border:1px solid var(--border); padding:1.5rem; text-decoration:none; transition:all 0.2s; clip-path:polygon(0 0,calc(100% - 10px) 0,100% 10px,100% 100%,10px 100%,0 calc(100% - 10px)); display:block;" onmouseover="this.style.borderColor='rgba(155,126,200,0.4)'" onmouseout="this.style.borderColor='rgba(0, 212, 200, 0.15)'">
+          <div style="font-family:'DM Mono',monospace; font-size:0.6rem; color:var(--purple-light); letter-spacing:0.12em; text-transform:uppercase; margin-bottom:0.4rem;">Tribal Belonging</div>
+          <div style="font-family:'Bebas Neue',sans-serif; font-size:1rem; letter-spacing:0.05em; color:var(--white);">The Tribal Compass</div>
+        </a>
+
+        <a href="carrot-loop.html" style="background:var(--card); border:1px solid var(--border); padding:1.5rem; text-decoration:none; transition:all 0.2s; clip-path:polygon(0 0,calc(100% - 10px) 0,100% 10px,100% 100%,10px 100%,0 calc(100% - 10px)); display:block;" onmouseover="this.style.borderColor='rgba(155,126,200,0.4)'" onmouseout="this.style.borderColor='rgba(0, 212, 200, 0.15)'">
+          <div style="font-family:'DM Mono',monospace; font-size:0.6rem; color:var(--purple-light); letter-spacing:0.12em; text-transform:uppercase; margin-bottom:0.4rem;">Scarcity</div>
+          <div style="font-family:'Bebas Neue',sans-serif; font-size:1rem; letter-spacing:0.05em; color:var(--white);">The Carrot Loop</div>
+        </a>
+
+        <a href="blame-cascade.html" style="background:var(--card); border:1px solid var(--border); padding:1.5rem; text-decoration:none; transition:all 0.2s; clip-path:polygon(0 0,calc(100% - 10px) 0,100% 10px,100% 100%,10px 100%,0 calc(100% - 10px)); display:block;" onmouseover="this.style.borderColor='rgba(155,126,200,0.4)'" onmouseout="this.style.borderColor='rgba(0, 212, 200, 0.15)'">
+          <div style="font-family:'DM Mono',monospace; font-size:0.6rem; color:var(--purple-light); letter-spacing:0.12em; text-transform:uppercase; margin-bottom:0.4rem;">Survival</div>
+          <div style="font-family:'Bebas Neue',sans-serif; font-size:1rem; letter-spacing:0.05em; color:var(--white);">The Blame Cascade</div>
+        </a>
+
+      </div>
+    </div>
+
+    <!-- ENTRY SET 05 — THE BUILDER'S GLITCHES -->
+    <div style="margin-bottom:3rem;">
+      <div style="font-family:'DM Mono',monospace; font-size:0.72rem; color:var(--teal); letter-spacing:0.2em; text-transform:uppercase; margin-bottom:1.25rem; display:flex; align-items:center; gap:0.75rem; border-bottom:1px solid var(--border); padding-bottom:0.75rem;">
+        <span style="display:block; width:24px; height:1px; background:var(--teal);"></span>
+        Entry Set 05 — The Builder's Glitches
+      </div>
+      <div style="display:grid; grid-template-columns:repeat(3,1fr); gap:1.25rem;">
+
+        <a href="shiny-object-loop.html" style="background:var(--card); border:1px solid var(--border); padding:1.5rem; text-decoration:none; transition:all 0.2s; clip-path:polygon(0 0,calc(100% - 10px) 0,100% 10px,100% 100%,10px 100%,0 calc(100% - 10px)); display:block;" onmouseover="this.style.borderColor='rgba(0,212,200,0.4)'" onmouseout="this.style.borderColor='rgba(0, 212, 200, 0.15)'">
+          <div style="font-family:'DM Mono',monospace; font-size:0.6rem; color:var(--teal); letter-spacing:0.12em; text-transform:uppercase; margin-bottom:0.4rem;">Legacy</div>
+          <div style="font-family:'Bebas Neue',sans-serif; font-size:1rem; letter-spacing:0.05em; color:var(--white);">The Shiny Object Loop</div>
+        </a>
+
+        <a href="sconce-mistake.html" style="background:var(--card); border:1px solid var(--border); padding:1.5rem; text-decoration:none; transition:all 0.2s; clip-path:polygon(0 0,calc(100% - 10px) 0,100% 10px,100% 100%,10px 100%,0 calc(100% - 10px)); display:block;" onmouseover="this.style.borderColor='rgba(0,212,200,0.4)'" onmouseout="this.style.borderColor='rgba(0, 212, 200, 0.15)'">
+          <div style="font-family:'DM Mono',monospace; font-size:0.6rem; color:var(--teal); letter-spacing:0.12em; text-transform:uppercase; margin-bottom:0.4rem;">Scarcity</div>
+          <div style="font-family:'Bebas Neue',sans-serif; font-size:1rem; letter-spacing:0.05em; color:var(--white);">The Sconce Mistake</div>
+        </a>
+
+        <a href="saturated-market-blindspot.html" style="background:var(--card); border:1px solid var(--border); padding:1.5rem; text-decoration:none; transition:all 0.2s; clip-path:polygon(0 0,calc(100% - 10px) 0,100% 10px,100% 100%,10px 100%,0 calc(100% - 10px)); display:block;" onmouseover="this.style.borderColor='rgba(0,212,200,0.4)'" onmouseout="this.style.borderColor='rgba(0, 212, 200, 0.15)'">
+          <div style="font-family:'DM Mono',monospace; font-size:0.6rem; color:var(--teal); letter-spacing:0.12em; text-transform:uppercase; margin-bottom:0.4rem;">Legacy</div>
+          <div style="font-family:'Bebas Neue',sans-serif; font-size:1rem; letter-spacing:0.05em; color:var(--white);">The Saturated Market Blindspot</div>
+        </a>
+
+        <a href="helicopter-owner.html" style="background:var(--card); border:1px solid var(--border); padding:1.5rem; text-decoration:none; transition:all 0.2s; clip-path:polygon(0 0,calc(100% - 10px) 0,100% 10px,100% 100%,10px 100%,0 calc(100% - 10px)); display:block;" onmouseover="this.style.borderColor='rgba(0,212,200,0.4)'" onmouseout="this.style.borderColor='rgba(0, 212, 200, 0.15)'">
+          <div style="font-family:'DM Mono',monospace; font-size:0.6rem; color:var(--teal); letter-spacing:0.12em; text-transform:uppercase; margin-bottom:0.4rem;">Survival</div>
+          <div style="font-family:'Bebas Neue',sans-serif; font-size:1rem; letter-spacing:0.05em; color:var(--white);">The Helicopter Owner</div>
+        </a>
+
+        <a href="identity-hostage.html" style="background:var(--card); border:1px solid var(--border); padding:1.5rem; text-decoration:none; transition:all 0.2s; clip-path:polygon(0 0,calc(100% - 10px) 0,100% 10px,100% 100%,10px 100%,0 calc(100% - 10px)); display:block;" onmouseover="this.style.borderColor='rgba(0,212,200,0.4)'" onmouseout="this.style.borderColor='rgba(0, 212, 200, 0.15)'">
+          <div style="font-family:'DM Mono',monospace; font-size:0.6rem; color:var(--teal); letter-spacing:0.12em; text-transform:uppercase; margin-bottom:0.4rem;">Hierarchy</div>
+          <div style="font-family:'Bebas Neue',sans-serif; font-size:1rem; letter-spacing:0.05em; color:var(--white);">The Identity Hostage</div>
+        </a>
+
+        <a href="scale-before-foundation.html" style="background:var(--card); border:1px solid var(--border); padding:1.5rem; text-decoration:none; transition:all 0.2s; clip-path:polygon(0 0,calc(100% - 10px) 0,100% 10px,100% 100%,10px 100%,0 calc(100% - 10px)); display:block;" onmouseover="this.style.borderColor='rgba(0,212,200,0.4)'" onmouseout="this.style.borderColor='rgba(0, 212, 200, 0.15)'">
+          <div style="font-family:'DM Mono',monospace; font-size:0.6rem; color:var(--teal); letter-spacing:0.12em; text-transform:uppercase; margin-bottom:0.4rem;">Legacy</div>
+          <div style="font-family:'Bebas Neue',sans-serif; font-size:1rem; letter-spacing:0.05em; color:var(--white);">The Scale Before Foundation Glitch</div>
+        </a>
+
+        <a href="trust-without-structure.html" style="background:var(--card); border:1px solid var(--border); padding:1.5rem; text-decoration:none; transition:all 0.2s; clip-path:polygon(0 0,calc(100% - 10px) 0,100% 10px,100% 100%,10px 100%,0 calc(100% - 10px)); display:block;" onmouseover="this.style.borderColor='rgba(0,212,200,0.4)'" onmouseout="this.style.borderColor='rgba(0, 212, 200, 0.15)'">
+          <div style="font-family:'DM Mono',monospace; font-size:0.6rem; color:var(--teal); letter-spacing:0.12em; text-transform:uppercase; margin-bottom:0.4rem;">Tribal Belonging</div>
+          <div style="font-family:'Bebas Neue',sans-serif; font-size:1rem; letter-spacing:0.05em; color:var(--white);">The Trust Without Structure Glitch</div>
+        </a>
+
+        <a href="untested-dream.html" style="background:var(--card); border:1px solid var(--border); padding:1.5rem; text-decoration:none; transition:all 0.2s; clip-path:polygon(0 0,calc(100% - 10px) 0,100% 10px,100% 100%,10px 100%,0 calc(100% - 10px)); display:block;" onmouseover="this.style.borderColor='rgba(0,212,200,0.4)'" onmouseout="this.style.borderColor='rgba(0, 212, 200, 0.15)'">
+          <div style="font-family:'DM Mono',monospace; font-size:0.6rem; color:var(--teal); letter-spacing:0.12em; text-transform:uppercase; margin-bottom:0.4rem;">Survival</div>
+          <div style="font-family:'Bebas Neue',sans-serif; font-size:1rem; letter-spacing:0.05em; color:var(--white);">The Untested Dream</div>
+        </a>
+
+        <a href="retrieval-block.html" style="background:var(--card); border:1px solid var(--border); padding:1.5rem; text-decoration:none; transition:all 0.2s; clip-path:polygon(0 0,calc(100% - 10px) 0,100% 10px,100% 100%,10px 100%,0 calc(100% - 10px)); display:block;" onmouseover="this.style.borderColor='rgba(0,212,200,0.4)'" onmouseout="this.style.borderColor='rgba(0, 212, 200, 0.15)'">
+          <div style="font-family:'DM Mono',monospace; font-size:0.6rem; color:var(--teal); letter-spacing:0.12em; text-transform:uppercase; margin-bottom:0.4rem;">Survival</div>
+          <div style="font-family:'Bebas Neue',sans-serif; font-size:1rem; letter-spacing:0.05em; color:var(--white);">The Retrieval Block</div>
+        </a>
+
+        <a href="founders-deaf-spot.html" style="background:var(--card); border:1px solid var(--border); padding:1.5rem; text-decoration:none; transition:all 0.2s; clip-path:polygon(0 0,calc(100% - 10px) 0,100% 10px,100% 100%,10px 100%,0 calc(100% - 10px)); display:block;" onmouseover="this.style.borderColor='rgba(0,212,200,0.4)'" onmouseout="this.style.borderColor='rgba(0, 212, 200, 0.15)'">
+          <div style="font-family:'DM Mono',monospace; font-size:0.6rem; color:var(--teal); letter-spacing:0.12em; text-transform:uppercase; margin-bottom:0.4rem;">Hierarchy</div>
+          <div style="font-family:'Bebas Neue',sans-serif; font-size:1rem; letter-spacing:0.05em; color:var(--white);">The Founder's Deaf Spot</div>
+        </a>
+
+      </div>
+    </div>
+
+    <!-- SEMINAR MERRY-GO-ROUND standalone -->
+    <div style="margin-bottom:2rem;">
+      <div style="display:grid; grid-template-columns:repeat(3,1fr); gap:1.25rem;">
+        <a href="seminar-merry-go-round.html" style="background:var(--card); border:1px solid var(--border); padding:1.5rem; text-decoration:none; transition:all 0.2s; clip-path:polygon(0 0,calc(100% - 10px) 0,100% 10px,100% 100%,10px 100%,0 calc(100% - 10px)); display:block;" onmouseover="this.style.borderColor='rgba(0,212,200,0.4)'" onmouseout="this.style.borderColor='rgba(0, 212, 200, 0.15)'">
+          <div style="font-family:'DM Mono',monospace; font-size:0.6rem; color:var(--teal); letter-spacing:0.12em; text-transform:uppercase; margin-bottom:0.4rem;">Legacy · All Sets</div>
+          <div style="font-family:'Bebas Neue',sans-serif; font-size:1rem; letter-spacing:0.05em; color:var(--white);">The Seminar Merry-Go-Round</div>
+        </a>
+      </div>
+    </div>
+
+    <p style="font-family:'DM Mono',monospace; font-size:0.72rem; color:var(--gray); letter-spacing:0.1em; margin-top:1rem; text-align:center;">37 named programs · The Complete Glitch Glossary available on Amazon →</p>
+    <div style="text-align:center; margin-top:1.5rem;">
+      <a href="https://www.amazon.com/stores/Kevin-Donovan/author/B0GZSGDFH4" target="_blank" class="btn-secondary">Get the Complete Glossary on Amazon →</a>
+    </div>
+
+  </div>
+</section>
+
+
+<!-- CREDIBILITY -->
+<section id="credibility" style="padding: 6rem 4rem; background: var(--dark); border-top: 1px solid var(--border);">
+  <div style="max-width:1000px; margin:0 auto; text-align:center;">
+    <div class="section-tag" style="justify-content:center;">25 Years. 300+ Campaigns.</div>
+    <h2 class="section-title">THE <span class="accent">BRIEF</span><br>ON KEVIN</h2>
+    <p class="section-body" style="margin:0 auto 3rem; text-align:center;">
+      A veteran Director, Producer, and Campaign Strategist who spent 25 years pulling the levers of human biology for the world's biggest brands — before he knew those levers had a name.
+    </p>
+    <div class="cred-brands">
+      <span class="cred-brand">McDonald's</span>
+      <span class="cred-brand">Coca-Cola</span>
+      <span class="cred-brand">Intel</span>
+      <span class="cred-brand">Taco Bell</span>
+      <span class="cred-brand">Miller Lite</span>
+      <span class="cred-brand">KFC</span>
+      <span class="cred-brand">Kraft</span>
+      <span class="cred-brand">Pringles</span>
+      <span class="cred-brand">Mattel</span>
+      <span class="cred-brand">Disney</span>
+      <span class="cred-brand">Ford</span>
+      <span class="cred-brand">Hormel</span>
+      <span class="cred-brand">National Geographic</span>
+      <span class="cred-brand">Warner Brothers</span>
+      <span class="cred-brand">Showtime</span>
+      <span class="cred-brand">CBS</span>
+    </div>
+    <div class="cred-divider"></div>
+    <p style="font-family:'DM Mono', monospace; font-size:0.72rem; color:var(--gray); letter-spacing:0.15em; text-transform:uppercase; margin-bottom:1rem;">Agencies</p>
+    <div class="cred-brands" style="margin-bottom:0;">
+      <span class="cred-brand">BBDO</span>
+      <span class="cred-brand">Leo Burnett</span>
+      <span class="cred-brand">Foote Cone & Belding</span>
+      <span class="cred-brand">Ogilvy</span>
+      <span class="cred-brand">Deutsch LA</span>
+      <span class="cred-brand">DDB Needham</span>
+      <span class="cred-brand">Y&R</span>
+    </div>
+    <div class="cred-divider"></div>
+    <div class="cred-awards">
+      <span class="cred-award">Clio Award Winner</span>
+      <span class="cred-award">Telly Award Winner</span>
+      <span class="cred-award">Emmy Nominated</span>
+    </div>
+    <div class="cred-divider"></div>
+    <p class="cred-quote">
+      "I wasn't just watching the machine. <strong>I was helping to run it.</strong> Now I help businesses, agencies and individuals name what's been running — and see it clearly enough to change it."
+    </p>
+    <p style="font-family:'DM Mono',monospace; font-size:0.72rem; color:var(--gray); margin-top:1rem; letter-spacing:0.1em;">— KEVIN DONOVAN</p>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact" style="background: var(--black); border-top: 1px solid var(--border); padding: 6rem 4rem;">
+  <div class="contact-grid">
+    <div class="contact-left">
+      <div class="section-tag">Contact</div>
+      <h2 class="section-title">LET'S FIND<br>YOUR <span class="accent">GLITCH</span></h2>
+      <p class="section-body">
+        Whether you're a business owner hitting the same wall, an agency whose creative isn't breaking through, or someone who has simply been asking <em>why do I keep doing this</em> — start here.
+      </p>
+      <div class="contact-note">
+        Campaign Diagnostics start at <strong style="color:var(--teal);">$950</strong>.<br>
+        Creative team reviews from <strong style="color:var(--teal);">$2,500</strong>.<br>
+        Revenue Stability Sessions <strong style="color:var(--teal);">$1,500</strong>.<br>
+        Revenue Architecture Blueprint from <strong style="color:var(--teal);">$3,500</strong>.<br>
+        Online Course <strong style="color:var(--teal);">$197</strong>.<br>
+        AI Governance <strong style="color:var(--teal);">$2,500</strong>.<br>
+        <option value="ai-reality-check">AI Reality Check ($1,500)</option>
+<option value="ai-adoption-audit">AI Adoption Audit ($5,000–$10,000)</option>
+<option value="ai-governance-foundation">AI Governance Foundation ($15,000–$25,000)</option>
+<option value="ai-advisor">Fractional AI Governance Advisor ($2,500–$5,000/mo)</option>
+        Personal One on One Sessions — contact for pricing.<br>
+        Speaking and podcast inquiries welcome.<br><br>
+        Or reach out directly:<br>
+        <a href="mailto:kevin@glitchaudit.co" style="color:var(--teal); text-decoration:none;">kevin@glitchaudit.co</a><br><br>
+        <a href="https://www.youtube.com/@GlimpsesvsGlitches" target="_blank" style="color:var(--teal); text-decoration:none; font-family:'DM Mono',monospace; font-size:0.8rem; letter-spacing:0.1em;">YouTube → @GlimpsesvsGlitches</a>
+      </div>
+    </div>
+    <div>
+      <form action="https://formspree.io/f/xnjraanl" method="POST">
+        <div class="form-group">
+          <label for="name">Name</label>
+          <input type="text" id="name" name="name" required placeholder="Your name">
+        </div>
+        <div class="form-group">
+          <label for="email">Email</label>
+          <input type="email" id="email" name="email" required placeholder="your@email.com">
+        </div>
+        <div class="form-group">
+          <label for="interest">I'm interested in</label>
+          <select id="interest" name="interest">
+            <option value="">Select one</option>
+            <option value="audit">Campaign Diagnostic ($950)</option>
+            <option value="team-review">Creative Team Review ($2,500–$3,500)</option>
+            <option value="consulting">On-Site Consulting</option>
+            <option value="stability">Revenue Stability Session ($1,500)</option>
+            <option value="blueprint">Revenue Architecture Blueprint ($3,500–$7,500)</option>
+            <option value="course">Online Course — Awareness vs Thoughts ($197)</option>
+            AI Governance <strong style="color:var(--teal);">$2,500</strong>.<br>
+        <option value="ai-reality-check">AI Reality Check ($1,500)</option>
+<option value="ai-adoption-audit">AI Adoption Audit ($5,000–$10,000)</option>
+<option value="ai-governance-foundation">AI Governance Foundation ($15,000–$25,000)</option>
+<option value="ai-advisor">Fractional AI Governance Advisor ($2,500–$5,000/mo)</option>
+            <option value="personal">Personal One on One Session</option>
+            <option value="workshop">Weekend Workshop — Notify Me</option>
+            <option value="speaking">Speaking / Keynote</option>
+            <option value="podcast">Podcast Guest</option>
+            <option value="book">The Books</option>
+            <option value="other">Other</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="message">Message <span class="form-note">(optional)</span></label>
+          <textarea id="message" name="message" placeholder="Tell me about your situation..."></textarea>
+        </div>
+        <button type="submit" class="btn-primary" style="cursor:pointer; border:none; width:100%; text-align:center; padding:1rem;">Send It</button>
+      </form>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-logo">GLITCH AUDIT</div>
+  <div class="footer-copy">© 2026 Kevin Donovan · glitchaudit.co</div>
+</footer>
+
+</body>
+</html>
