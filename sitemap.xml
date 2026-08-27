@@ -1,10 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://sitemaps.org">
-  <url>
-    <loc>https://glitchaudit.co</loc>
-    <lastmod>2026-08-26</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>1.0</priority>
-  </url>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <url><loc>https://glitchaudit.co/</loc></url>
+  <url><loc>https://glitchaudit.co/immersion.html</loc></url>
   
 </urlset>
